@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './styles.css';
 
-const Display = ({timerApp}) => {
+const Stopwatch = () => {
 	const [time, setTime] = useState(0);
 	const [timerOn, setTimerOn] = useState(false);
 	
@@ -69,4 +69,4 @@ const Display = ({timerApp}) => {
 	);
 };
 
-export default Display;
+export default Stopwatch;
