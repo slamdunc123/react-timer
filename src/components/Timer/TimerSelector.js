@@ -1,8 +1,8 @@
 import React from 'react'
 
-const TimerAppSelector = ({timerApp, handleTimerAppSelector}) => {
+const TimerSelector = ({timerApp, handleTimerAppSelector}) => {
     return (
-        <div className='timer-selector'>
+        <div className='twinkl-timer-selector'>
 				<select value={timerApp} onChange={handleTimerAppSelector}>
 					<option value='stopwatch'>Stopwatch</option>
 					<option value='countdown'>Countdown</option>
@@ -12,4 +12,4 @@ const TimerAppSelector = ({timerApp, handleTimerAppSelector}) => {
     )
 }
 
-export default TimerAppSelector
+export default TimerSelector

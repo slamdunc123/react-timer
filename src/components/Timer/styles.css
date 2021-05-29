@@ -1,25 +1,28 @@
-/* body {
-	overflow: hidden;
+.twinkl-timer-app-container {
 	background-color: #2299f9;
 	color: #ffffff;
-} */
-
-.page-container {
-	padding: 1rem;
-}
-
-.theme-colors {
+	height: 100vh;
 	display: flex;
 	flex-direction: column;
-	width: 100px;
+	align-items: center;
 }
 
-.advert-container {
+.twinkl-timer-theme-colors {
+	display: flex;
+	/* flex-direction: column; */
+	/* width: 100px; */
+}
+
+.twinkl-timer-theme-colors > button {
+	height: 50px;
+}
+
+.twinkl-advert-container {
 	display: flex;
 	justify-content: center;
 }
 
-.advert-body {
+.twinkl-advert-body {
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
@@ -30,29 +33,33 @@
 	padding: 1rem;
 }
 
-.advert-image {
+.twinkl-advert-image {
 	height: 100%;
 	width: 250px;
 	background-color: #ffffff;
 }
 
-.timer-container {
-	/* height: calc(100vh - 100px); */
+.twinkl-timer-title {
+	height: 10rem;
+	font-size: 5rem;
+}
+
+.twinkl-timer-display-container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+    margin-bottom: 2rem;
 }
 
-.timer-display {
+.twinkl-timer-display {
 	display: flex;
 	justify-content: center;
-	/* margin: auto; */
-	height: 300px;
-	width: 800px;
+	height: 200px;
+	/* width: 800px; */
 }
 
-.timer-unit {
+.twinkl-timer-unit {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -63,11 +70,11 @@
 	width: 250px;
 }
 
-.timer-controls {
+.twinkl-timer-controls {
 	display: flex;
 }
 
-.timer-controls > button {
+.twinkl-timer-controls > button {
 	height: 75px;
 	width: 75px;
 	border-radius: 50%;
@@ -77,16 +84,23 @@
 	margin: 0.5rem;
 	color: #7a7a7a;
 	font-family: 'Roboto', sans-serif;
-	/* background-image: url("images/matt.webp");
-    background-position: center; */
 }
 
-.timer-controls > button:hover:enabled {
+.twinkl-timer-controls > button:hover:enabled {
 	background-color: #d9d9d9;
 	color: #6c757d;
 	cursor: pointer;
 }
 
-.timer-controls > button:hover {
+.twinkl-timer-controls > button:hover {
 	cursor: default;
+}
+
+.twinkl-fullscreen-selector-container > button {
+	height: 50px;
+}
+
+.twinkl-timer-options {
+	display: flex;
+	justify-content: center;
 }

@@ -1,22 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './styles.css';
 
-const TimerDisplay = () => {
+const Display = ({timerApp}) => {
 	const [time, setTime] = useState(0);
 	const [timerOn, setTimerOn] = useState(false);
-	const [fullScreen, setFullScreen] = useState(false);
+	
 
-	const elem = document.documentElement;
 
-	const handleFullScreen = () => {
-		if (!fullScreen) {
-			setFullScreen(true);
-			elem.requestFullscreen();
-		} else {
-			setFullScreen(false);
-			document.exitFullscreen();
-		}
-	};
 
 	const calculateMinutes = () => {
 		return ('0' + Math.floor((time / 60000) % 60)).slice(-2);
@@ -48,9 +38,6 @@ const TimerDisplay = () => {
 				>
 					Reset
 				</button>
-				<button onClick={handleFullScreen}>
-					{fullScreen ? 'Minimise' : 'Full Screen'}
-				</button>
 			</>
 		);
 	};
@@ -70,18 +57,16 @@ const TimerDisplay = () => {
 	}, [timerOn]);
 
 	return (
-		<div className='page-container'>
-			<div className='timer-container'>
-				<div className='timer-display'>
-					<div className='timer-unit'>{calculateMinutes()}</div>
-					<div className='timer-unit'>{calculateSeconds()}</div>
-					<div className='timer-unit'>{calculateMilliseconds()}</div>
+			<div className='twinkl-timer-display-container'>
+				<div className='twinkl-timer-display'>
+					<div className='twinkl-timer-unit'>{calculateMinutes()}</div>
+					<div className='twinkl-timer-unit'>{calculateSeconds()}</div>
+					<div className='twinkl-timer-unit'>{calculateMilliseconds()}</div>
 				</div>
 
-				<div className='timer-controls'>{renderControls()}</div>
+				<div className='twinkl-timer-controls'>{renderControls()}</div>
 			</div>
-		</div>
 	);
 };
 
-export default TimerDisplay;
+export default Display;

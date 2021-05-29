@@ -1,13 +1,9 @@
 import './App.css';
-import TimerContainer from './components/Timer/TimerContainer';
+import TimerContainer from './components/Timer/Timer';
 
 function App() {
 	return (
-		<div className='App'>
-			<header className='App-header'>
-				<TimerContainer />
-			</header>
-		</div>
+		<TimerContainer />
 	);
 }
 
