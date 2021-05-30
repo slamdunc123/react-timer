@@ -6,6 +6,7 @@ import TimerSelector from './TimerSelector';
 import FullScreenSelector from './FullScreenSelector';
 import TitleSelector from './TitleSelector';
 import Countdown from './Countdown';
+import CountDownTimer from './CountdownTimer';
 
 const Timer = () => {
 	const [timerType, setTimerType] = useState('stopwatch');
@@ -19,19 +20,19 @@ const Timer = () => {
 		setTitle(event.target.value);
 	};
 
-    const renderTimerType = () => {
-        let timer;
+	const renderTimerType = () => {
+		let timer;
 
-        if (timerType === 'stopwatch') {
-            timer = <Stopwatch />
-        } else if (timerType  === 'countdown') {
-            timer = <Countdown />
-        }
+		if (timerType === 'stopwatch') {
+			timer = <Stopwatch />;
+		} else if (timerType === 'countdown') {
+			timer = <Countdown />;
+		} else if (timerType === 'timer') {
+			timer = <CountDownTimer />;
+		}
 
-        return timer
-        
-    }
-
+		return timer;
+	};
 
 	return (
 		<div className='twinkl-timer-app-container'>

@@ -44,7 +44,7 @@
 	font-size: 5rem;
 }
 
-.twinkl-timer-display-container {
+.twinkl-counter-display-container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -52,14 +52,14 @@
     margin-bottom: 2rem;
 }
 
-.twinkl-timer-display {
+.twinkl-counter-display {
 	display: flex;
 	justify-content: center;
 	height: 200px;
 	/* width: 800px; */
 }
 
-.twinkl-timer-unit {
+.twinkl-counter-unit {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -70,11 +70,11 @@
 	width: 250px;
 }
 
-.twinkl-timer-controls {
+.twinkl-counter-controls {
 	display: flex;
 }
 
-.twinkl-timer-controls > button {
+.twinkl-counter-controls > button {
 	height: 75px;
 	width: 75px;
 	border-radius: 50%;
@@ -86,13 +86,13 @@
 	font-family: 'Roboto', sans-serif;
 }
 
-.twinkl-timer-controls > button:hover:enabled {
+.twinkl-counter-controls > button:hover:enabled {
 	background-color: #d9d9d9;
 	color: #6c757d;
 	cursor: pointer;
 }
 
-.twinkl-timer-controls > button:hover {
+.twinkl-counter-controls > button:hover {
 	cursor: default;
 }
 
@@ -103,4 +103,8 @@
 .twinkl-timer-options {
 	display: flex;
 	justify-content: center;
+}
+
+input:focus {
+    outline: none;
 }

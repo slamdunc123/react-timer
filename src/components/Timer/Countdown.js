@@ -14,7 +14,14 @@ const Countdown = () => {
 	const renderControls = () => {
 		let button = <button onClick={() => setCounterOn(true)}>Start</button>;
 		if (!counterOn && counter === counterStartValue) {
-			button = <button onClick={() => setCounterOn(true)}>Start</button>;
+			button = (
+				<button
+					onClick={() => setCounterOn(true)}
+					disabled={counter === 0}
+				>
+					Start
+				</button>
+			);
 		} else if (!counterOn && counter < counterStartValue) {
 			button = <button onClick={() => setCounterOn(true)}>Resume</button>;
 		}
@@ -47,7 +54,7 @@ const Countdown = () => {
 	}, [counter, counterOn]);
 
 	return (
-		<div className='twinkl-timer-unit'>
+		<div className='twinkl-counter-unit'>
 			{counter}
 			<input
 				type='number'
@@ -56,8 +63,7 @@ const Countdown = () => {
 				value={counter}
 				onChange={handleCounterValueChange}
 			/>
-			{/* <button onClick={() => setCounterOn(!counterOn)}>Start</button> */}
-			<div className='twinkl-timer-controls'>{renderControls()}</div>
+			<div className='twinkl-counter-controls'>{renderControls()}</div>
 		</div>
 	);
 };
