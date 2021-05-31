@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { SketchPicker, ChromePicker } from 'react-color';
+import {
+	BlockPicker,
+	TwitterPicker,
+	SketchPicker,
+	ChromePicker,
+} from 'react-color';
+import { MdFormatColorFill } from 'react-icons/md';
+import { MdFormatColorText } from 'react-icons/md';
 
 const ThemeSelector = () => {
 	const [backgroundColor, setBackgroundColor] = useState('#2299f9');
@@ -10,7 +17,9 @@ const ThemeSelector = () => {
 
 	const handleBackgroundColorsChange = ({ hex }) => {
 		setBackgroundColor(hex);
-		document.querySelector('.twinkl-timer-app-container').style.backgroundColor = hex;
+		document.querySelector(
+			'.twinkl-timer-app-container'
+		).style.backgroundColor = hex;
 	};
 
 	const handleTextColorChange = ({ hex }) => {
@@ -19,29 +28,29 @@ const ThemeSelector = () => {
 	};
 
 	return (
-		<div className='twinkl-timer-theme-colors'>
-			<button
+		<div className='twinkl-timer-theme-colors-container'>
+			<MdFormatColorFill
 				onClick={() =>
 					setShowBackgroundColorPicker(!showBackgroundColorPicker)
 				}
-			>
-				Background
-			</button>
+			/>
+
 			{showBackgroundColorPicker ? (
-				<ChromePicker
+				<TwitterPicker
+					className='twinkl-timer-theme-color-picker'
+					style={{ marginTop: '10px !important' }}
 					color={backgroundColor}
 					onChangeComplete={(color) => {
 						handleBackgroundColorsChange(color);
 					}}
 				/>
 			) : null}
-			<button
+			<MdFormatColorText
 				onClick={() => setShowTextColorPicker(!showTextColorPicker)}
-			>
-				Text
-			</button>
+			/>
 			{showTextColorPicker ? (
-				<ChromePicker
+				<TwitterPicker
+					className='twinkl-timer-theme-color-picker'
 					color={textColor}
 					onChangeComplete={(color) => {
 						handleTextColorChange(color);

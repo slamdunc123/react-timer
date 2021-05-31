@@ -7,6 +7,7 @@ import FullScreenSelector from './FullScreenSelector';
 import TitleSelector from './TitleSelector';
 import Countdown from './Countdown';
 import CountDownTimer from './CountdownTimer';
+import SettingsMenu from './SettingsMenu';
 
 const Timer = () => {
 	const [timerType, setTimerType] = useState('stopwatch');
@@ -36,18 +37,16 @@ const Timer = () => {
 
 	return (
 		<div className='twinkl-timer-app-container'>
+            <SettingsMenu 
+            title={title}
+            timerType={timerType}
+            handleTimerTypeSelector={handleTimerTypeSelector}
+            handleTitleChange={handleTitleChange}
+            />
 			<Advert />
 			<div className='twinkl-timer-title'>{title}</div>
 			{renderTimerType()}
-			<div className='twinkl-timer-options'>
-				<FullScreenSelector />
-				<TimerSelector
-					timerType={timerType}
-					handleTimerTypeSelector={handleTimerTypeSelector}
-				/>
-				<ThemeSelector />
-				<TitleSelector handleTitleChange={handleTitleChange} />
-			</div>
+		
 		</div>
 	);
 };
