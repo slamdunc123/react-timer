@@ -33,6 +33,7 @@
 .twinkl-timer-selector-container {
 	display: flex;
 	width: 100%;
+    margin-bottom: 2px;
 }
 
 .twinkl-timer-selector-container > svg {
@@ -44,14 +45,15 @@
 
 .twinkl-timer-selector-container > select {
 	outline: none;
+    border: none;
 }
 
-.twinkl-advert-container {
+.twinkl-timer-advert-container {
 	display: flex;
 	justify-content: center;
 }
 
-.twinkl-advert-body {
+.twinkl-timer-advert-body {
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
@@ -62,7 +64,7 @@
 	padding: 1rem;
 }
 
-.twinkl-advert-image {
+.twinkl-timer-advert-image {
 	height: 100%;
 	width: 250px;
 	background-color: #ffffff;
@@ -75,6 +77,7 @@
 
 .twinkl-timer-title-selector-container {
 	display: flex;
+    margin-bottom: 2px;
 }
 
 .twinkl-timer-title-selector-container > svg {
@@ -86,6 +89,7 @@
 
 .twinkl-timer-title-selector-container > input {
 	outline: none;
+    border: none;
 }
 
 .twinkl-counter-display-container {
@@ -112,6 +116,11 @@
 	font-family: 'Roboto', sans-serif;
 	font-weight: bolder;
 	width: 250px;
+}
+
+.twinkl-counter-unit > input {
+    outline: none;
+    border: none;
 }
 
 .twinkl-counter-controls {
