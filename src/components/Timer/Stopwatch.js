@@ -40,14 +40,12 @@ const Stopwatch = () => {
 	};
 
 	useEffect(() => {
-		let interval = null;
+		let interval;
 
 		if (counterOn) {
 			interval = setInterval(() => {
 				setCounter((prevTime) => prevTime + 10); // increase the counter by 10 milliseconds (100th of a second) every 10 milliseconds
 			}, 10);
-		} else if (!counterOn) {
-			clearInterval(interval);
 		}
 
 		return () => clearInterval(interval);

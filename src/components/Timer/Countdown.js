@@ -34,10 +34,7 @@ const Countdown = () => {
 				{button}
 				<button
 					onClick={() => setCounter(counterStartValue)}
-					disabled={
-						counterOn ||
-						(!counterOn && counter > 0)
-					}
+					disabled={counterOn}
 				>
 					Reset
 				</button>
@@ -46,16 +43,19 @@ const Countdown = () => {
 	};
 
 	useEffect(() => {
+		let interval;
 		if (counterOn) {
-			let timer =
-				counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
-			return () => clearInterval(timer);
+			interval = setInterval(
+				() => setCounter((preCounter) => preCounter - 1),
+				1000
+			);
 		}
-	}, [counter, counterOn]);
+		return () => clearInterval(interval);
+	}, [counterOn]);
 
-    useEffect(() => {
-if (counter === 0) setCounterOn(false)
-    }, [counter])
+	useEffect(() => {
+		if (counter === 0) setCounterOn(false);
+	}, [counter]);
 
 	return (
 		<div className='twinkl-counter-unit'>
