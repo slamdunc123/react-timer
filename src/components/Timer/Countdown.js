@@ -58,16 +58,18 @@ const Countdown = () => {
 	}, [counter]);
 
 	return (
-		<div className='twinkl-counter-unit'>
-			{counter}
+		<div className='twinkl-counter-display-container'>
+			<div className='twinkl-counter-display'>
+				<div className='twinkl-counter-unit'>{counter}</div>
+			</div>
+			<div className='twinkl-counter-controls'>{renderControls()}</div>
 			<input
 				type='number'
 				min='1'
 				max='100'
 				value={counter}
 				onChange={handleCounterValueChange}
-			/>
-			<div className='twinkl-counter-controls'>{renderControls()}</div>
+			/>Start Time
 		</div>
 	);
 };
