@@ -1,5 +1,5 @@
 import './App.css';
-import TimerContainer from './components/Timer/Timer';
+import TimerContainer from './components/Timer/TimerContainer';
 
 function App() {
 	return (

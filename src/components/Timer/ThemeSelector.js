@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import {
-	BlockPicker,
 	TwitterPicker,
-	SketchPicker,
-	ChromePicker,
 } from 'react-color';
 import { MdFormatColorFill } from 'react-icons/md';
 import { MdFormatColorText } from 'react-icons/md';
@@ -57,7 +54,6 @@ const ThemeSelector = () => {
 					}}
 				/>
 			) : null}
-			{/* <button onClick={handleThemeColorsChange}>Change</button> */}
 		</div>
 	);
 };

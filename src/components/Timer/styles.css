@@ -33,7 +33,7 @@
 .twinkl-timer-selector-container {
 	display: flex;
 	width: 100%;
-    margin-bottom: 2px;
+	margin-bottom: 2px;
 }
 
 .twinkl-timer-selector-container > svg {
@@ -45,7 +45,7 @@
 
 .twinkl-timer-selector-container > select {
 	outline: none;
-    border: none;
+	border: none;
 }
 
 .twinkl-timer-advert-container {
@@ -71,13 +71,13 @@
 }
 
 .twinkl-timer-title {
-	height: 10rem;
+	height: 8rem;
 	font-size: 5rem;
 }
 
 .twinkl-timer-title-selector-container {
 	display: flex;
-    margin-bottom: 2px;
+	margin-bottom: 2px;
 }
 
 .twinkl-timer-title-selector-container > svg {
@@ -89,15 +89,15 @@
 
 .twinkl-timer-title-selector-container > input {
 	outline: none;
-    border: none;
+	border: none;
 }
 
 .twinkl-counter-display-container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
-	margin-bottom: 2rem;
+	justify-content: space-evenly;
+    height: 400px;
 }
 
 .twinkl-counter-display {
@@ -118,9 +118,42 @@
 	width: 250px;
 }
 
-.twinkl-counter-unit > input {
-    outline: none;
-    border: none;
+.twinkl-counter-unit > span {
+	font-size: 2rem;
+}
+
+.twinkl-counter-input-container {
+	display: flex;
+	flex-direction: column;
+	height: 150px;
+	justify-content: space-evenly;
+}
+
+.twinkl-counter-input-group-headings {
+	display: flex;
+	/* width: 250px; */
+	color: #ffffff;
+}
+
+.twinkl-counter-input-group-headings > span {
+    width: 36px;
+    text-align: left;
+    margin-right: 0.5rem;
+}
+
+.twinkl-counter-input-group {
+	display: flex;
+	width: 250px;
+	color: #ffffff;
+}
+
+.twinkl-counter-input {
+    display: flex;
+    flex-direction: column;
+	outline: none;
+	border: none;
+	width: 32px;
+	margin-right: 0.5rem;
 }
 
 .twinkl-counter-controls {
@@ -156,7 +189,7 @@
 }
 
 .twinkl-timer-settings-container > svg {
-    height: 1.5rem;
+	height: 1.5rem;
 	width: 1.5rem;
 	cursor: pointer;
 	padding: 0.2rem;
@@ -170,4 +203,17 @@
 
 .twinkl-timer-theme-color-picker {
 	margin-top: 10px;
+}
+
+.twinkl-counter-indicator-container {
+	display: flex;
+	justify-content: space-evenly;
+	width: 500px;
+}
+
+.twinkl-timer-modal-button > svg {
+	height: 1.5rem;
+	width: 1.5rem;
+	cursor: pointer;
+	padding: 0.2rem;
 }

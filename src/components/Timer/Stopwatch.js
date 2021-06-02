@@ -54,9 +54,9 @@ const Stopwatch = () => {
 	return (
 			<div className='twinkl-counter-display-container'>
 				<div className='twinkl-counter-display'>
-					<div className='twinkl-counter-unit'>{calculateMinutes()}</div>
-					<div className='twinkl-counter-unit'>{calculateSeconds()}</div>
-					<div className='twinkl-counter-unit'>{calculateMilliseconds()}</div>
+					<div className='twinkl-counter-unit'>{calculateMinutes()}<span>mins</span></div>
+					<div className='twinkl-counter-unit'>{calculateSeconds()}<span>secs</span></div>
+					<div className='twinkl-counter-unit'>{calculateMilliseconds()}<span>100th</span></div>
 				</div>
 
 				<div className='twinkl-counter-controls'>{renderControls()}</div>
