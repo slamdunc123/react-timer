@@ -140,12 +140,12 @@
 
 .twinkl-counter-input-container.timer {
 	justify-content: flex-start;
-	height: 450px;
+	height: 275px;
     width: 375px;
 }
 .twinkl-counter-input-container.basic-timer {
 	justify-content: flex-start;
-	height: 400px;
+	height: 175px;
     width: 375px;
 }
 
@@ -156,9 +156,9 @@
 }
 
 .twinkl-counter-input-group-headings > span {
-	width: 36px;
+	width: 84px;
 	text-align: left;
-	margin-right: 0.5rem;
+	margin-bottom: 0.5rem;
 }
 
 .twinkl-counter-input-group {
