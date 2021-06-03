@@ -46,12 +46,16 @@
 .twinkl-timer-selector-container > select {
 	outline: none;
 	border: none;
-    width: 52%;
+	width: 52%;
 }
 
 .twinkl-timer-advert-container {
 	display: flex;
 	justify-content: center;
+}
+
+.twinkl-timer-advert-container > a:link {
+	text-decoration: none;
 }
 
 .twinkl-timer-advert-body {
@@ -69,6 +73,10 @@
 	height: 100%;
 	width: 250px;
 	background-color: #ffffff;
+}
+
+.twinkl-timer-advert-text {
+	color: #ffffff;
 }
 
 .twinkl-timer-title {
@@ -91,7 +99,7 @@
 .twinkl-timer-title-selector-container > input {
 	outline: none;
 	border: none;
-    width: 50%;
+	width: 50%;
 }
 
 .twinkl-counter-display-container {
@@ -99,7 +107,7 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-evenly;
-    height: 400px;
+	height: 400px;
 }
 
 .twinkl-counter-display {
@@ -127,15 +135,16 @@
 .twinkl-counter-input-container {
 	display: flex;
 	flex-direction: column;
-	
+    margin-bottom: 1rem;;
 }
 
 .twinkl-counter-input-container.timer {
 	justify-content: space-evenly;
-    height: 150px;
+	height: 150px;
 }
 .twinkl-counter-input-container.basic-timer {
-	justify-content: flex-start;
+	justify-content: space-evenly;
+	height: 75px;
 }
 
 .twinkl-counter-input-group-headings {
@@ -145,9 +154,9 @@
 }
 
 .twinkl-counter-input-group-headings > span {
-    width: 36px;
-    text-align: left;
-    margin-right: 0.5rem;
+	width: 36px;
+	text-align: left;
+	margin-right: 0.5rem;
 }
 
 .twinkl-counter-input-group {
@@ -157,8 +166,8 @@
 }
 
 .twinkl-counter-input {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 	outline: none;
 	border: none;
 	width: 32px;
@@ -195,7 +204,7 @@
 	position: absolute;
 	top: 300px;
 	left: 10px;
-    width: 200px;
+	width: 200px;
 }
 
 .twinkl-timer-settings-container > svg {
@@ -226,4 +235,30 @@
 	width: 1.5rem;
 	cursor: pointer;
 	padding: 0.2rem;
+}
+
+.twinkl-counter-modal-clear-button {
+    color: #ffffff;
+    cursor: pointer;
+    background-color: #2299f9;
+    border: 1px solid #ffffff;
+}
+.twinkl-counter-modal-close-button {
+    color: #ffffff;
+    cursor: pointer;
+    background-color: #2299f9;
+    border: 1px solid #ffffff;
+}
+
+.ReactModal__Overlay {
+	opacity: 0;
+	transition: opacity 500ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+	opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+	opacity: 0;
 }

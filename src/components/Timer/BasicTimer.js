@@ -30,10 +30,11 @@ const BasicTimer = ({ timerType }) => {
 	};
 
 	const runCounter = useCallback(() => {
-		if (hrs === 0 && mins === 0 && secs === 0) setCounterOn(false);
-		else if (mins === 0 && secs === 0) {
+        console.log('running');
+		if (hrs == 0 && mins == 0 && secs == 0) setCounterOn(false);
+		else if (mins == 0 && secs == 0) {
 			setTime([hrs - 1, 59, 59]);
-		} else if (secs === 0) {
+		} else if (secs == 0) {
 			setTime([hrs, mins - 1, 59]);
 		} else {
 			setTime([hrs, mins, secs - 1]);
@@ -42,6 +43,10 @@ const BasicTimer = ({ timerType }) => {
 
 	const resetCounter = () =>
 		setTime([parseInt(startHrs), parseInt(startMins), parseInt(startSecs)]);
+
+	const clearCounterInputs = () => {
+		setTime([0, 0, 0]);
+	};
 
 	const renderControls = () => {
 		let button = <button onClick={() => setCounterOn(true)}>Start</button>;
@@ -54,7 +59,7 @@ const BasicTimer = ({ timerType }) => {
 			button = (
 				<button
 					onClick={() => setCounterOn(true)}
-					disabled={hrs === 0 && mins === 0 && secs === 0}
+					disabled={hrs == 0 && mins == 0 && secs == 0}
 				>
 					Start
 				</button>
@@ -97,12 +102,13 @@ const BasicTimer = ({ timerType }) => {
 	const modalBody = (
 		<>
 			<MdClose
-				style={{ color: 'white' }}
+				className="twinkl-counter-modal-close-button"
 				onClick={() => setIsModalOpen(false)}
 			>
 				close
 			</MdClose>
 			{renderCounterInputs()}
+			<button className="twinkl-counter-modal-clear-button" onClick={clearCounterInputs}>Clear</button>
 		</>
 	);
 
