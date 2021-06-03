@@ -1,7 +1,8 @@
 import React from 'react';
+import Select from 'react-select';
 
 const TimerInputs = ({
-    timerType,
+	timerType,
 	hrs,
 	mins,
 	secs,
@@ -11,19 +12,30 @@ const TimerInputs = ({
 	thresholdTwoHrs,
 	thresholdTwoMins,
 	thresholdTwoSecs,
-	handleHoursChange,
-	handleMinutesChange,
-	handleSecondsChange,
-	handleThresholdOneHoursChange,
-	handleThresholdOneMinutesChange,
-	handleThresholdOneSecondsChange,
-	handleThresholdTwoHoursChange,
-	handleThresholdTwoMinutesChange,
-	handleThresholdTwoSecondsChange,
+	onHoursChange,
+	onMinutesChange,
+	onSecondsChange,
+	onThresholdOneHoursChange,
+	onThresholdOneMinutesChange,
+	onThresholdOneSecondsChange,
+	onThresholdTwoHoursChange,
+	onThresholdTwoMinutesChange,
+	onThresholdTwoSecondsChange,
 }) => {
+	const buildOptions = (min, max) => {
+		const options = [];
+		for (let i = min; i <= max; i++) {
+			options.push({
+				value: i,
+				label: `${i}`,
+			});
+		}
+		return options;
+	};
+
 	const calcThresholdOneMaxHrs = () => {
 		let max = hrs;
-		if ( mins === 0 && secs === 0) max = hrs - 1;
+		if (mins === 0 && secs === 0) max = hrs - 1;
 		return max;
 	};
 	const calcThresholdOneMaxMins = () => {
@@ -38,9 +50,10 @@ const TimerInputs = ({
 		return max;
 	};
 
-    const calcThresholdTwoMaxHrs = () => {
+	const calcThresholdTwoMaxHrs = () => {
 		let max = thresholdOneHrs;
-		if (thresholdOneMins === 0 && thresholdOneSecs === 0) max = thresholdOneHrs - 1;
+		if (thresholdOneMins === 0 && thresholdOneSecs === 0)
+			max = thresholdOneHrs - 1;
 		return max;
 	};
 
@@ -56,109 +69,93 @@ const TimerInputs = ({
 		return max;
 	};
 
-	const calcThresholdOneHrsValue = () => {
-		let value = thresholdOneHrs;
-		if (thresholdOneHrs > hrs) value = 0;
-		return value;
-	};
-	const calcThresholdTwoHrsValue = () => {
-		let value = thresholdTwoHrs;
-		if (thresholdTwoHrs > thresholdOneHrs) value = 0;
-		return value;
-	};
-
 	return (
-        <div className={`twinkl-counter-input-container ${timerType === 'timer' ? 'timer' : 'basic-timer'}`}>
+		<div
+			className={`twinkl-counter-input-container ${
+				timerType === 'timer' ? 'timer' : 'basic-timer'
+			}`}
+		>
 			<div className='twinkl-counter-input-group-headings'>
-               <span>hrs</span> 
-               <span>mins</span> 
-               <span>secs</span> 
-            </div>
-			<div className='twinkl-counter-input-group'>
-				<input
-					className='twinkl-counter-input'
-					type='number'
-					min='0'
-					max='23'
-					value={hrs}
-					onChange={handleHoursChange}
-				/>
-				<input
-					className='twinkl-counter-input'
-					type='number'
-					min='0'
-					max='59'
-					value={mins}
-					onChange={handleMinutesChange}
-				/>
-				<input
-					className='twinkl-counter-input'
-					type='number'
-					min='0'
-					max='59'
-					value={secs}
-					onChange={handleSecondsChange}
-				/>
-				Start time
+				<span>hrs</span>
+				<span>mins</span>
+				<span>secs</span>
 			</div>
-            {timerType === 'timer' ? (
-<>
 			<div className='twinkl-counter-input-group'>
-				<input
-					className='twinkl-counter-input'
-					type='number'
-					min='0'
-					max={calcThresholdOneMaxHrs()}
-					value={calcThresholdOneHrsValue()}
-					onChange={handleThresholdOneHoursChange}
-				/>
-				<input
-					className='twinkl-counter-input'
-					type='number'
-					min='0'
-					max={calcThresholdOneMaxMins()}
-					value={thresholdOneMins}
-					onChange={handleThresholdOneMinutesChange}
-				/>
-				<input
-					className='twinkl-counter-input'
-					type='number'
-					min='0'
-					max={calcThresholdOneMaxSecs()}
-					value={thresholdOneSecs}
-					onChange={handleThresholdOneSecondsChange}
-				/>
-                <span>1st Threshold</span>
+				<div className='twinkl-counter-input'>
+					<Select
+						options={buildOptions(0, 23)}
+						onChange={onHoursChange}
+						placeholder='0'
+					/>
+				</div>
+				<div className='twinkl-counter-input'>
+					<Select
+						options={buildOptions(0, 59)}
+						onChange={onMinutesChange}
+						placeholder='0'
+					/>
+				</div>
+				<div className='twinkl-counter-input'>
+					<Select
+						options={buildOptions(0, 59)}
+						onChange={onSecondsChange}
+						placeholder='0'
+					/>
+				</div>
+				<span>Start time</span>
 			</div>
-				
-			<div className='twinkl-counter-input-group'>
-				<input
-					className='twinkl-counter-input'
-					type='number'
-					min='0'
-					max={calcThresholdTwoMaxHrs()}
-					value={calcThresholdTwoHrsValue()}
-					onChange={handleThresholdTwoHoursChange}
-				/>
-				<input
-					className='twinkl-counter-input'
-					type='number'
-					min='0'
-					max={calcThresholdTwoMaxMins()}
-					value={thresholdTwoMins}
-					onChange={handleThresholdTwoMinutesChange}
-				/>
-				<input
-					className='twinkl-counter-input'
-					type='number'
-					min='0'
-					max={calcThresholdTwoMaxSecs()}
-					value={thresholdTwoSecs}
-					onChange={handleThresholdTwoSecondsChange}
-				/>
-				2nd Threshold
-			</div></>
-            ) : null}
+			{timerType === 'timer' ? (
+				<>
+					<div className='twinkl-counter-input-group'>
+						<div className='twinkl-counter-input'>
+							<Select
+								options={buildOptions(0, calcThresholdOneMaxHrs())}
+								onChange={onThresholdOneHoursChange}
+								placeholder='0'
+							/>
+						</div>
+						<div className='twinkl-counter-input'>
+							<Select
+								options={buildOptions(0, calcThresholdOneMaxMins())}
+								onChange={onThresholdOneMinutesChange}
+								placeholder='0'
+							/>
+						</div>
+						<div className='twinkl-counter-input'>
+							<Select
+								options={buildOptions(0, calcThresholdOneMaxSecs())}
+								onChange={onThresholdOneSecondsChange}
+								placeholder='0'
+							/>
+						</div>
+						<span>1st Threshold</span>
+					</div>
+					<div className='twinkl-counter-input-group'>
+						<div className='twinkl-counter-input'>
+							<Select
+								options={buildOptions(0, calcThresholdTwoMaxHrs())}
+								onChange={onThresholdTwoHoursChange}
+								placeholder='0'
+							/>
+						</div>
+						<div className='twinkl-counter-input'>
+							<Select
+								options={buildOptions(0, calcThresholdTwoMaxMins())}
+								onChange={onThresholdTwoMinutesChange}
+								placeholder='0'
+							/>
+						</div>
+						<div className='twinkl-counter-input'>
+							<Select
+								options={buildOptions(0, calcThresholdTwoMaxSecs())}
+								onChange={onThresholdTwoSecondsChange}
+								placeholder='0'
+							/>
+						</div>
+						<span>2nd Threshold</span>
+					</div>
+				</>
+			) : null}
 		</div>
 	);
 };

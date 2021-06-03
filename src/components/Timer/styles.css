@@ -139,17 +139,19 @@
 }
 
 .twinkl-counter-input-container.timer {
-	justify-content: space-evenly;
-	height: 150px;
+	justify-content: flex-start;
+	height: 450px;
+    width: 375px;
 }
 .twinkl-counter-input-container.basic-timer {
-	justify-content: space-evenly;
-	height: 75px;
+	justify-content: flex-start;
+	height: 400px;
+    width: 375px;
 }
 
 .twinkl-counter-input-group-headings {
 	display: flex;
-	/* width: 250px; */
+	width: 250px;
 	color: #ffffff;
 }
 
@@ -161,8 +163,9 @@
 
 .twinkl-counter-input-group {
 	display: flex;
-	width: 250px;
+    align-items: center;
 	color: #ffffff;
+    margin-bottom: 1rem;
 }
 
 .twinkl-counter-input {
@@ -170,8 +173,9 @@
 	flex-direction: column;
 	outline: none;
 	border: none;
-	width: 32px;
+	width: 75px;
 	margin-right: 0.5rem;
+    color: #2299f9;
 }
 
 .twinkl-counter-controls {

@@ -52,21 +52,22 @@ const Timer = ({ timerType }) => {
 	});
 
 	const handleHoursChange = (e) => {
-		setTime([e.target.value, mins, secs]);
-		setStartTime([e.target.value, mins, secs]);
+		setTime([e.value, mins, secs]);
+		setStartTime([e.value, mins, secs]);
 	};
 	const handleMinutesChange = (e) => {
-		setTime([hrs, e.target.value, secs]);
-		setStartTime([hrs, e.target.value, secs]);
+		setTime([hrs, e.value, secs]);
+		setStartTime([hrs, e.value, secs]);
 	};
 	const handleSecondsChange = (e) => {
-		setTime([hrs, mins, e.target.value]);
-		setStartTime([hrs, mins, e.target.value]);
+		setTime([hrs, mins, e.value]);
+		setStartTime([hrs, mins, e.value]);
 	};
 
 	const handleThresholdOneHoursChange = (e) => {
+        console.log(hrs, e.value);
 		setThresholdOneTime([
-			e.target.value,
+			e.value,
 			thresholdOneMins,
 			thresholdOneSecs,
 		]);
@@ -74,7 +75,7 @@ const Timer = ({ timerType }) => {
 	const handleThresholdOneMinutesChange = (e) => {
 		setThresholdOneTime([
 			thresholdOneHrs,
-			e.target.value,
+			e.value,
 			thresholdOneSecs,
 		]);
 	};
@@ -82,12 +83,12 @@ const Timer = ({ timerType }) => {
 		setThresholdOneTime([
 			thresholdOneHrs,
 			thresholdOneMins,
-			e.target.value,
+			e.value,
 		]);
 	};
 	const handleThresholdTwoHoursChange = (e) => {
 		setThresholdTwoTime([
-			e.target.value,
+			e.value,
 			thresholdTwoMins,
 			thresholdTwoSecs,
 		]);
@@ -95,7 +96,7 @@ const Timer = ({ timerType }) => {
 	const handleThresholdTwoMinutesChange = (e) => {
 		setThresholdTwoTime([
 			thresholdTwoHrs,
-			e.target.value,
+			e.value,
 			thresholdTwoSecs,
 		]);
 	};
@@ -103,15 +104,15 @@ const Timer = ({ timerType }) => {
 		setThresholdTwoTime([
 			thresholdTwoHrs,
 			thresholdTwoMins,
-			e.target.value,
+			e.value,
 		]);
 	};
 
 	const runCounter = useCallback(() => {
-		if (hrs === 0 && mins === 0 && secs === 0) setCounterOn(false);
-		else if (mins === 0 && secs === 0) {
+		if (hrs == 0 && mins == 0 && secs == 0) setCounterOn(false);
+		else if (mins == 0 && secs == 0) {
 			setTime([hrs - 1, 59, 59]);
-		} else if (secs === 0) {
+		} else if (secs == 0) {
 			setTime([hrs, mins - 1, 59]);
 		} else {
 			setTime([hrs, mins, secs - 1]);
@@ -120,6 +121,16 @@ const Timer = ({ timerType }) => {
 
 	const resetCounter = () =>
 		setTime([parseInt(startHrs), parseInt(startMins), parseInt(startSecs)]);
+
+	const clearCounterInputs = () => {
+		setTime([0, 0, 0]);
+		setThresholdOneTime([0, 0, 0]);
+		setThresholdTwoTime([0, 0, 0]);
+	};
+	const clearThresholdInputs = () => {
+		setThresholdOneTime([0, 0, 0]);
+		setThresholdTwoTime([0, 0, 0]);
+	};
 
 	const renderControls = () => {
 		let button = <button onClick={() => setCounterOn(true)}>Start</button>;
@@ -132,7 +143,7 @@ const Timer = ({ timerType }) => {
 			button = (
 				<button
 					onClick={() => setCounterOn(true)}
-					disabled={hrs === 0 && mins === 0 && secs === 0}
+					disabled={hrs == 0 && mins == 0 && secs == 0}
 				>
 					Start
 				</button>
@@ -171,23 +182,24 @@ const Timer = ({ timerType }) => {
 				thresholdTwoHrs={thresholdTwoHrs}
 				thresholdTwoMins={thresholdTwoMins}
 				thresholdTwoSecs={thresholdTwoSecs}
-				handleHoursChange={handleHoursChange}
-				handleMinutesChange={handleMinutesChange}
-				handleSecondsChange={handleSecondsChange}
-				handleThresholdOneHoursChange={handleThresholdOneHoursChange}
-				handleThresholdOneMinutesChange={
+				onHoursChange={handleHoursChange}
+				onMinutesChange={handleMinutesChange}
+				onSecondsChange={handleSecondsChange}
+				onThresholdOneHoursChange={handleThresholdOneHoursChange}
+				onThresholdOneMinutesChange={
 					handleThresholdOneMinutesChange
 				}
-				handleThresholdOneSecondsChange={
+				onThresholdOneSecondsChange={
 					handleThresholdOneSecondsChange
 				}
-				handleThresholdTwoHoursChange={handleThresholdTwoHoursChange}
-				handleThresholdTwoMinutesChange={
+				onThresholdTwoHoursChange={handleThresholdTwoHoursChange}
+				onThresholdTwoMinutesChange={
 					handleThresholdTwoMinutesChange
 				}
-				handleThresholdTwoSecondsChange={
+				onThresholdTwoSecondsChange={
 					handleThresholdTwoSecondsChange
 				}
+                clearThresholdInputs={clearThresholdInputs}
 			/>
 		);
 	};
@@ -208,12 +220,13 @@ const Timer = ({ timerType }) => {
 	const modalBody = (
 		<>
 			<MdClose
-				style={{ color: 'white' }}
+				className="twinkl-counter-modal-close-button"
 				onClick={() => setIsModalOpen(false)}
 			>
 				close
 			</MdClose>
 			{renderCounterInputs()}
+			<button className="twinkl-counter-modal-clear-button" onClick={clearCounterInputs}>Clear</button>
 		</>
 	);
 
@@ -228,6 +241,7 @@ const Timer = ({ timerType }) => {
 
 	return (
 		<>
+			{console.log(hrs, mins, secs)}
 			<TimerModal isModalOpen={isModalOpen} modalBody={modalBody} />
 			<div className='twinkl-counter-display-container'>
 				<div className='twinkl-counter-display'>

@@ -4,6 +4,7 @@ import TimerInputs from './TimerInputs';
 import { GoSettings } from 'react-icons/go';
 import { MdClose } from 'react-icons/md';
 
+
 const BasicTimer = ({ timerType }) => {
 	const hoursMinSecs = { hours: 0, minutes: 0, seconds: 0 };
 	const { hours = 0, minutes = 0, seconds = 0 } = hoursMinSecs;
@@ -17,20 +18,20 @@ const BasicTimer = ({ timerType }) => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const handleHoursChange = (e) => {
-		setTime([e.target.value, mins, secs]);
-		setStartTime([e.target.value, mins, secs]);
+		setTime([e.value, mins, secs]);
+		setStartTime([e.value, mins, secs]);
 	};
 	const handleMinutesChange = (e) => {
-		setTime([hrs, e.target.value, secs]);
-		setStartTime([hrs, e.target.value, secs]);
+		setTime([hrs, e.value, secs]);
+		setStartTime([hrs, e.value, secs]);
 	};
 	const handleSecondsChange = (e) => {
-		setTime([hrs, mins, e.target.value]);
-		setStartTime([hrs, mins, e.target.value]);
+		setTime([hrs, mins, e.value]);
+		setStartTime([hrs, mins, e.value]);
 	};
 
 	const runCounter = useCallback(() => {
-        console.log('running');
+		console.log('running');
 		if (hrs == 0 && mins == 0 && secs == 0) setCounterOn(false);
 		else if (mins == 0 && secs == 0) {
 			setTime([hrs - 1, 59, 59]);
@@ -92,9 +93,9 @@ const BasicTimer = ({ timerType }) => {
 				hrs={hrs}
 				mins={mins}
 				secs={secs}
-				handleHoursChange={handleHoursChange}
-				handleMinutesChange={handleMinutesChange}
-				handleSecondsChange={handleSecondsChange}
+				onHoursChange={handleHoursChange}
+				onMinutesChange={handleMinutesChange}
+				onSecondsChange={handleSecondsChange}
 			/>
 		);
 	};
@@ -102,13 +103,18 @@ const BasicTimer = ({ timerType }) => {
 	const modalBody = (
 		<>
 			<MdClose
-				className="twinkl-counter-modal-close-button"
+				className='twinkl-counter-modal-close-button'
 				onClick={() => setIsModalOpen(false)}
 			>
 				close
 			</MdClose>
 			{renderCounterInputs()}
-			<button className="twinkl-counter-modal-clear-button" onClick={clearCounterInputs}>Clear</button>
+			<button
+				className='twinkl-counter-modal-clear-button'
+				onClick={clearCounterInputs}
+			>
+				Clear
+			</button>
 		</>
 	);
 
