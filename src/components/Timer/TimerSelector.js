@@ -12,7 +12,7 @@ const TimerSelector = ({timerType, handleTimerTypeSelector}) => {
 
 				<select value={timerType} onChange={handleTimerTypeSelector}>
 					<option value='stopwatch'>Stopwatch</option>
-					<option value='countdown'>Countdown</option>
+					<option value='basictimer'>Basic Timer</option>
 					<option value='timer'>Timer</option>
 				</select>
                 ) : null

@@ -46,6 +46,7 @@
 .twinkl-timer-selector-container > select {
 	outline: none;
 	border: none;
+    width: 52%;
 }
 
 .twinkl-timer-advert-container {
@@ -90,6 +91,7 @@
 .twinkl-timer-title-selector-container > input {
 	outline: none;
 	border: none;
+    width: 50%;
 }
 
 .twinkl-counter-display-container {
@@ -125,8 +127,15 @@
 .twinkl-counter-input-container {
 	display: flex;
 	flex-direction: column;
-	height: 150px;
+	
+}
+
+.twinkl-counter-input-container.timer {
 	justify-content: space-evenly;
+    height: 150px;
+}
+.twinkl-counter-input-container.basic-timer {
+	justify-content: flex-start;
 }
 
 .twinkl-counter-input-group-headings {
@@ -186,6 +195,7 @@
 	position: absolute;
 	top: 300px;
 	left: 10px;
+    width: 200px;
 }
 
 .twinkl-timer-settings-container > svg {

@@ -1,23 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import moment from 'moment';
-import TimerIndicator from './TimerIndicator';
 import TimerModal from './TimerModal';
 import TimerInputs from './TimerInputs';
 import { GoSettings } from 'react-icons/go';
 import { MdClose } from 'react-icons/md';
 
-const Timer = ({ timerType }) => {
+const BasicTimer = ({ timerType }) => {
 	const hoursMinSecs = { hours: 0, minutes: 0, seconds: 0 };
 	const { hours = 0, minutes = 0, seconds = 0 } = hoursMinSecs;
 	const [[hrs, mins, secs], setTime] = useState([hours, minutes, seconds]);
-	const [
-		[thresholdOneHrs, thresholdOneMins, thresholdOneSecs],
-		setThresholdOneTime,
-	] = useState([hours, minutes, seconds]);
-	const [
-		[thresholdTwoHrs, thresholdTwoMins, thresholdTwoSecs],
-		setThresholdTwoTime,
-	] = useState([hours, minutes, seconds]);
 	const [[startHrs, startMins, startSecs], setStartTime] = useState([
 		hours,
 		minutes,
@@ -25,31 +15,6 @@ const Timer = ({ timerType }) => {
 	]);
 	const [counterOn, setCounterOn] = useState(false);
 	const [isModalOpen, setIsModalOpen] = useState(false);
-
-	const getCurrentTimeObject = () => {
-		const entries = new Map([
-			['h', parseInt(hrs, 10)],
-			['m', parseInt(mins, 10)],
-			['s', parseInt(secs, 10)],
-		]);
-		const currentTimeObj = Object.fromEntries(entries);
-
-		return currentTimeObj;
-	};
-
-	const currentTime = moment(getCurrentTimeObject());
-
-	const thresholdTimeOne = moment({
-		h: thresholdOneHrs,
-		m: thresholdOneMins,
-		s: thresholdOneSecs,
-	});
-
-	const thresholdTimeTwo = moment({
-		h: thresholdTwoHrs,
-		m: thresholdTwoMins,
-		s: thresholdTwoSecs,
-	});
 
 	const handleHoursChange = (e) => {
 		setTime([e.target.value, mins, secs]);
@@ -62,49 +27,6 @@ const Timer = ({ timerType }) => {
 	const handleSecondsChange = (e) => {
 		setTime([hrs, mins, e.target.value]);
 		setStartTime([hrs, mins, e.target.value]);
-	};
-
-	const handleThresholdOneHoursChange = (e) => {
-		setThresholdOneTime([
-			e.target.value,
-			thresholdOneMins,
-			thresholdOneSecs,
-		]);
-	};
-	const handleThresholdOneMinutesChange = (e) => {
-		setThresholdOneTime([
-			thresholdOneHrs,
-			e.target.value,
-			thresholdOneSecs,
-		]);
-	};
-	const handleThresholdOneSecondsChange = (e) => {
-		setThresholdOneTime([
-			thresholdOneHrs,
-			thresholdOneMins,
-			e.target.value,
-		]);
-	};
-	const handleThresholdTwoHoursChange = (e) => {
-		setThresholdTwoTime([
-			e.target.value,
-			thresholdTwoMins,
-			thresholdTwoSecs,
-		]);
-	};
-	const handleThresholdTwoMinutesChange = (e) => {
-		setThresholdTwoTime([
-			thresholdTwoHrs,
-			e.target.value,
-			thresholdTwoSecs,
-		]);
-	};
-	const handleThresholdTwoSecondsChange = (e) => {
-		setThresholdTwoTime([
-			thresholdTwoHrs,
-			thresholdTwoMins,
-			e.target.value,
-		]);
 	};
 
 	const runCounter = useCallback(() => {
@@ -165,44 +87,11 @@ const Timer = ({ timerType }) => {
 				hrs={hrs}
 				mins={mins}
 				secs={secs}
-				thresholdOneHrs={thresholdOneHrs}
-				thresholdOneMins={thresholdOneMins}
-				thresholdOneSecs={thresholdOneSecs}
-				thresholdTwoHrs={thresholdTwoHrs}
-				thresholdTwoMins={thresholdTwoMins}
-				thresholdTwoSecs={thresholdTwoSecs}
 				handleHoursChange={handleHoursChange}
 				handleMinutesChange={handleMinutesChange}
 				handleSecondsChange={handleSecondsChange}
-				handleThresholdOneHoursChange={handleThresholdOneHoursChange}
-				handleThresholdOneMinutesChange={
-					handleThresholdOneMinutesChange
-				}
-				handleThresholdOneSecondsChange={
-					handleThresholdOneSecondsChange
-				}
-				handleThresholdTwoHoursChange={handleThresholdTwoHoursChange}
-				handleThresholdTwoMinutesChange={
-					handleThresholdTwoMinutesChange
-				}
-				handleThresholdTwoSecondsChange={
-					handleThresholdTwoSecondsChange
-				}
 			/>
 		);
-	};
-
-	const renderIndicator = () => {
-		if (hrs === 0 && mins === 0 && secs === 0) {
-			return null;
-		} else
-			return (
-				<TimerIndicator
-					currentTime={currentTime}
-					thresholdTimeOne={thresholdTimeOne}
-					thresholdTimeTwo={thresholdTimeTwo}
-				/>
-			);
 	};
 
 	const modalBody = (
@@ -253,9 +142,8 @@ const Timer = ({ timerType }) => {
 					</GoSettings>
 				</div>
 			) : null}
-			{counterOn ? renderIndicator() : null}
 		</>
 	);
 };
 
-export default Timer;
+export default BasicTimer;

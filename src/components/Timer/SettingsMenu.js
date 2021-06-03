@@ -20,13 +20,14 @@ const SettingsMenu = ({
 			/>
 			{showSettingsMenu ? (
 				<div className='twinkl-timer-settings-menu'>
+                    <TimerSelector
+                        timerType={timerType}
+                        handleTimerTypeSelector={handleTimerTypeSelector}
+                    />
 					<TitleSelector
 						handleTitleChange={handleTitleChange}
 						title={title}
-					/>
-					<TimerSelector
-						timerType={timerType}
-						handleTimerTypeSelector={handleTimerTypeSelector}
+                        timerType={timerType}
 					/>
 					<ThemeSelector />
 				</div>

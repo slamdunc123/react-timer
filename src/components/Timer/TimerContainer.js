@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Advert from './Advert';
 import Stopwatch from './Stopwatch';
-import Countdown from './Countdown';
 import Timer from './Timer';
+import BasicTimer from './BasicTimer';
 import SettingsMenu from './SettingsMenu';
 
 const TimerContainer = () => {
@@ -22,10 +22,10 @@ const TimerContainer = () => {
 
 		if (timerType === 'stopwatch') {
 			timer = <Stopwatch />;
-		} else if (timerType === 'countdown') {
-			timer = <Countdown />;
+		} else if (timerType === 'basictimer') {
+			timer = <BasicTimer timerType={timerType}/>;
 		} else if (timerType === 'timer') {
-			timer = <Timer />;
+			timer = <Timer timerType={timerType}/>;
 		}
 
 		return timer;

@@ -1,6 +1,7 @@
 import React from 'react';
 
 const TimerInputs = ({
+    timerType,
 	hrs,
 	mins,
 	secs,
@@ -67,7 +68,7 @@ const TimerInputs = ({
 	};
 
 	return (
-        <div className='twinkl-counter-input-container'>
+        <div className={`twinkl-counter-input-container ${timerType === 'timer' ? 'timer' : 'basic-timer'}`}>
 			<div className='twinkl-counter-input-group-headings'>
                <span>hrs</span> 
                <span>mins</span> 
@@ -100,6 +101,8 @@ const TimerInputs = ({
 				/>
 				Start time
 			</div>
+            {timerType === 'timer' ? (
+<>
 			<div className='twinkl-counter-input-group'>
 				<input
 					className='twinkl-counter-input'
@@ -125,8 +128,9 @@ const TimerInputs = ({
 					value={thresholdOneSecs}
 					onChange={handleThresholdOneSecondsChange}
 				/>
-				1st Threshold
+                <span>1st Threshold</span>
 			</div>
+				
 			<div className='twinkl-counter-input-group'>
 				<input
 					className='twinkl-counter-input'
@@ -153,7 +157,8 @@ const TimerInputs = ({
 					onChange={handleThresholdTwoSecondsChange}
 				/>
 				2nd Threshold
-			</div>
+			</div></>
+            ) : null}
 		</div>
 	);
 };
