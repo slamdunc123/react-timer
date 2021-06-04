@@ -3,9 +3,9 @@ import Select from 'react-select';
 
 const TimerInputs = ({
 	timerType,
-	hrs,
-	mins,
-	secs,
+	startHrs,
+	startMins,
+	startSecs,
 	thresholdOneHrs,
 	thresholdOneMins,
 	thresholdOneSecs,
@@ -34,19 +34,19 @@ const TimerInputs = ({
 	};
 
 	const calcThresholdOneMaxHrs = () => {
-		let max = hrs;
-		if (mins === 0 && secs === 0) max = hrs - 1;
+		let max = startHrs;
+		if (startMins === 0 && startSecs === 0) max = startHrs - 1;
 		return max;
 	};
 	const calcThresholdOneMaxMins = () => {
 		let max = '59';
-		if (hrs === thresholdOneHrs) max = mins -1;
+		if (startHrs === thresholdOneHrs) max = startMins - 1;
 		return max;
 	};
 
 	const calcThresholdOneMaxSecs = () => {
 		let max = '59';
-		if (mins === thresholdOneMins) max = secs - 1;
+		if (startMins === thresholdOneMins) max = startSecs - 1;
 		return max;
 	};
 
@@ -76,17 +76,19 @@ const TimerInputs = ({
 			}`}
 		>
 			<div className='twinkl-counter-input-group-headings'>
-				<span>hrs</span>
-				<span>mins</span>
-				<span>secs</span>
+				<span>startHrs</span>
+				<span>startMins</span>
+				<span>startSecs</span>
 			</div>
 			<div className='twinkl-counter-input-group'>
 				<div className='twinkl-counter-input'>
+					{console.log('startHrs', startHrs)}
 					<Select
 						options={buildOptions(0, 23)}
 						onChange={onHoursChange}
 						placeholder='0'
-                        maxMenuHeight={150}
+						maxMenuHeight={150}
+						value={{value: startHrs, label: `${startHrs}`}}
 					/>
 				</div>
 				<div className='twinkl-counter-input'>
@@ -94,7 +96,8 @@ const TimerInputs = ({
 						options={buildOptions(0, 59)}
 						onChange={onMinutesChange}
 						placeholder='0'
-                        maxMenuHeight={150}
+						maxMenuHeight={150}
+                        value={{value: startMins, label: `${startMins}`}}
 					/>
 				</div>
 				<div className='twinkl-counter-input'>
@@ -102,7 +105,8 @@ const TimerInputs = ({
 						options={buildOptions(0, 59)}
 						onChange={onSecondsChange}
 						placeholder='0'
-                        maxMenuHeight={150}
+						maxMenuHeight={150}
+                        value={{value: startSecs, label: `${startSecs}`}}
 					/>
 				</div>
 				<span>Start time</span>
@@ -112,26 +116,38 @@ const TimerInputs = ({
 					<div className='twinkl-counter-input-group'>
 						<div className='twinkl-counter-input'>
 							<Select
-								options={buildOptions(0, calcThresholdOneMaxHrs())}
+								options={buildOptions(
+									0,
+									calcThresholdOneMaxHrs()
+								)}
 								onChange={onThresholdOneHoursChange}
 								placeholder='0'
-                                maxMenuHeight={150}
+								maxMenuHeight={150}
+                                value={{value: thresholdOneHrs, label: `${thresholdOneHrs}`}}
 							/>
 						</div>
 						<div className='twinkl-counter-input'>
 							<Select
-								options={buildOptions(0, calcThresholdOneMaxMins())}
+								options={buildOptions(
+									0,
+									calcThresholdOneMaxMins()
+								)}
 								onChange={onThresholdOneMinutesChange}
 								placeholder='0'
-                                maxMenuHeight={150}
+								maxMenuHeight={150}
+                                value={{value: thresholdOneMins, label: `${thresholdOneMins}`}}
 							/>
 						</div>
 						<div className='twinkl-counter-input'>
 							<Select
-								options={buildOptions(0, calcThresholdOneMaxSecs())}
+								options={buildOptions(
+									0,
+									calcThresholdOneMaxSecs()
+								)}
 								onChange={onThresholdOneSecondsChange}
 								placeholder='0'
-                                maxMenuHeight={150}
+								maxMenuHeight={150}
+                                value={{value: thresholdOneSecs, label: `${thresholdOneSecs}`}}
 							/>
 						</div>
 						<span>1st Threshold</span>
@@ -139,26 +155,38 @@ const TimerInputs = ({
 					<div className='twinkl-counter-input-group'>
 						<div className='twinkl-counter-input'>
 							<Select
-								options={buildOptions(0, calcThresholdTwoMaxHrs())}
+								options={buildOptions(
+									0,
+									calcThresholdTwoMaxHrs()
+								)}
 								onChange={onThresholdTwoHoursChange}
 								placeholder='0'
-                                maxMenuHeight={150}
+								maxMenuHeight={150}
+                                value={{value: thresholdTwoHrs, label: `${thresholdTwoHrs}`}}
 							/>
 						</div>
 						<div className='twinkl-counter-input'>
 							<Select
-								options={buildOptions(0, calcThresholdTwoMaxMins())}
+								options={buildOptions(
+									0,
+									calcThresholdTwoMaxMins()
+								)}
 								onChange={onThresholdTwoMinutesChange}
 								placeholder='0'
-                                maxMenuHeight={150}
+								maxMenuHeight={150}
+                                value={{value: thresholdTwoMins, label: `${thresholdTwoMins}`}}
 							/>
 						</div>
 						<div className='twinkl-counter-input'>
 							<Select
-								options={buildOptions(0, calcThresholdTwoMaxSecs())}
+								options={buildOptions(
+									0,
+									calcThresholdTwoMaxSecs()
+								)}
 								onChange={onThresholdTwoSecondsChange}
 								placeholder='0'
-                                maxMenuHeight={150}
+								maxMenuHeight={150}
+                                value={{value: thresholdTwoSecs, label: `${thresholdTwoSecs}`}}
 							/>
 						</div>
 						<span>2nd Threshold</span>

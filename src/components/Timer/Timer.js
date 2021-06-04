@@ -7,21 +7,19 @@ import { GoSettings } from 'react-icons/go';
 import { MdClose } from 'react-icons/md';
 
 const Timer = ({ timerType }) => {
-	const hoursMinSecs = { hours: 0, minutes: 0, seconds: 0 };
-	const { hours = 0, minutes = 0, seconds = 0 } = hoursMinSecs;
-	const [[hrs, mins, secs], setTime] = useState([hours, minutes, seconds]);
+	const [[hrs, mins, secs], setTime] = useState([0, 0, 0]);
 	const [
 		[thresholdOneHrs, thresholdOneMins, thresholdOneSecs],
 		setThresholdOneTime,
-	] = useState([hours, minutes, seconds]);
+	] = useState([0, 0, 0]);
 	const [
 		[thresholdTwoHrs, thresholdTwoMins, thresholdTwoSecs],
 		setThresholdTwoTime,
-	] = useState([hours, minutes, seconds]);
+	] = useState([0, 0, 0]);
 	const [[startHrs, startMins, startSecs], setStartTime] = useState([
-		hours,
-		minutes,
-		seconds,
+		0,
+		0,
+		0,
 	]);
 	const [counterOn, setCounterOn] = useState(false);
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -52,6 +50,8 @@ const Timer = ({ timerType }) => {
 	});
 
 	const handleHoursChange = (e) => {
+        console.log("slamdunc ~ file: Timer.js ~ line 59 ~ handleHoursChange ~ e", e.value)
+        
 		setTime([e.value, mins, secs]);
 		setStartTime([e.value, mins, secs]);
 	};
@@ -124,10 +124,7 @@ const Timer = ({ timerType }) => {
 
 	const clearCounterInputs = () => {
 		setTime([0, 0, 0]);
-		setThresholdOneTime([0, 0, 0]);
-		setThresholdTwoTime([0, 0, 0]);
-	};
-	const clearThresholdInputs = () => {
+		setStartTime([0, 0, 0]);
 		setThresholdOneTime([0, 0, 0]);
 		setThresholdTwoTime([0, 0, 0]);
 	};
@@ -173,9 +170,9 @@ const Timer = ({ timerType }) => {
 		return (
 			<TimerInputs
 				timerType={timerType}
-				hrs={hrs}
-				mins={mins}
-				secs={secs}
+				startHrs={startHrs}
+				startMins={startMins}
+				startSecs={startSecs}
 				thresholdOneHrs={thresholdOneHrs}
 				thresholdOneMins={thresholdOneMins}
 				thresholdOneSecs={thresholdOneSecs}
@@ -199,7 +196,6 @@ const Timer = ({ timerType }) => {
 				onThresholdTwoSecondsChange={
 					handleThresholdTwoSecondsChange
 				}
-                clearThresholdInputs={clearThresholdInputs}
 			/>
 		);
 	};

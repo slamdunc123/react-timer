@@ -4,15 +4,10 @@ import TimerInputs from './TimerInputs';
 import { GoSettings } from 'react-icons/go';
 import { MdClose } from 'react-icons/md';
 
-
 const BasicTimer = ({ timerType }) => {
-	const hoursMinSecs = { hours: 0, minutes: 0, seconds: 0 };
-	const { hours = 0, minutes = 0, seconds = 0 } = hoursMinSecs;
-	const [[hrs, mins, secs], setTime] = useState([hours, minutes, seconds]);
+	const [[hrs, mins, secs], setTime] = useState([0, 0, 0]);
 	const [[startHrs, startMins, startSecs], setStartTime] = useState([
-		hours,
-		minutes,
-		seconds,
+		0, 0, 0,
 	]);
 	const [counterOn, setCounterOn] = useState(false);
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -47,6 +42,7 @@ const BasicTimer = ({ timerType }) => {
 
 	const clearCounterInputs = () => {
 		setTime([0, 0, 0]);
+		setStartTime([0, 0, 0]);
 	};
 
 	const renderControls = () => {
@@ -90,9 +86,9 @@ const BasicTimer = ({ timerType }) => {
 		return (
 			<TimerInputs
 				timerType={timerType}
-				hrs={hrs}
-				mins={mins}
-				secs={secs}
+				startHrs={startHrs}
+				startMins={startMins}
+				startSecs={startSecs}
 				onHoursChange={handleHoursChange}
 				onMinutesChange={handleMinutesChange}
 				onSecondsChange={handleSecondsChange}
