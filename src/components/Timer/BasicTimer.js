@@ -25,7 +25,7 @@ const BasicTimer = ({ timerType }) => {
 		setStartTime([hrs, mins, e.value]);
 	};
 
-	const runCounter = useCallback(() => {
+	const startCounter = useCallback(() => {
 		console.log('running');
 		if (hrs == 0 && mins == 0 && secs == 0) setCounterOn(false);
 		else if (mins == 0 && secs == 0) {
@@ -118,10 +118,10 @@ const BasicTimer = ({ timerType }) => {
 		let interval;
 
 		if (counterOn) {
-			interval = setInterval(() => runCounter(), 1000);
+			interval = setInterval(() => startCounter(), 1000);
 		}
 		return () => clearInterval(interval);
-	}, [counterOn, runCounter]);
+	}, [counterOn, startCounter]);
 
 	return (
 		<>
