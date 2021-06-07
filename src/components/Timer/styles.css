@@ -135,18 +135,18 @@
 .twinkl-counter-input-container {
 	display: flex;
 	flex-direction: column;
-    margin-bottom: 1rem;;
+	margin-bottom: 1rem;
 }
 
 .twinkl-counter-input-container.timer {
 	justify-content: flex-start;
 	height: 300px;
-    width: 375px;
+	width: 400px;
 }
 .twinkl-counter-input-container.basic-timer {
 	justify-content: flex-start;
 	height: 175px;
-    width: 375px;
+	width: 400px;
 }
 
 .twinkl-counter-input-group-headings {
@@ -163,9 +163,9 @@
 
 .twinkl-counter-input-group {
 	display: flex;
-    align-items: center;
+	align-items: center;
 	color: #ffffff;
-    margin-bottom: 1rem;
+	margin-bottom: 1rem;
 }
 
 .twinkl-counter-input {
@@ -175,7 +175,7 @@
 	border: none;
 	width: 75px;
 	margin-right: 0.5rem;
-    color: #2299f9;
+	color: #2299f9;
 }
 
 .twinkl-counter-controls {
@@ -242,16 +242,30 @@
 }
 
 .twinkl-counter-modal-clear-button {
-    color: #ffffff;
-    cursor: pointer;
-    background-color: #2299f9;
-    border: 1px solid #ffffff;
+	color: #ffffff;
+	cursor: pointer;
+	background-color: #2299f9;
+	border: 1px solid #ffffff;
+	height: 30px;
+	width: 70px;
+    margin: 0.11rem;
 }
+
+.twinkl-counter-modal-clear-button:hover {
+	color: #2299f9;
+	background-color: #ffffff;
+}
+
 .twinkl-counter-modal-close-button {
-    color: #ffffff;
-    cursor: pointer;
-    background-color: #2299f9;
-    border: 1px solid #ffffff;
+	color: #ffffff;
+	cursor: pointer;
+	background-color: #2299f9;
+	border: 1px solid #ffffff;
+}
+
+.twinkl-counter-modal-close-button:hover {
+	color: #2299f9;
+	background-color: #ffffff;
 }
 
 .ReactModal__Overlay {

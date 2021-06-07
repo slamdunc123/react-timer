@@ -76,9 +76,9 @@ const TimerInputs = ({
 			}`}
 		>
 			<div className='twinkl-counter-input-group-headings'>
-				<span>startHrs</span>
-				<span>startMins</span>
-				<span>startSecs</span>
+				<span>Hrs</span>
+				<span>Mins</span>
+				<span>Secs</span>
 			</div>
 			<div className='twinkl-counter-input-group'>
 				<div className='twinkl-counter-input'>

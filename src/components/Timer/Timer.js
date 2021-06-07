@@ -125,7 +125,7 @@ const Timer = ({ timerType }) => {
 		) {
 			button = <button onClick={() => setCounterOn(true)}>Resume</button>;
 		}
-		if (counterOn && secs > 0) {
+		if (counterOn && (hrs > 0 || mins > 0 || secs > 0)) {
 			button = <button onClick={() => setCounterOn(false)}>Pause</button>;
 		}
 
@@ -188,6 +188,12 @@ const Timer = ({ timerType }) => {
 				close
 			</MdClose>
 			{renderCounterInputs()}
+			<button
+				className='twinkl-counter-modal-clear-button'
+				onClick={() => setIsModalOpen(false)}
+			>
+				Set
+			</button>
 			<button
 				className='twinkl-counter-modal-clear-button'
 				onClick={handleClearCounterInputs}
