@@ -45,8 +45,8 @@ const BasicTimer = ({ timerType }) => {
 		setStartTime([0, 0, 0]);
 	};
 
-	const renderControls = () => {
-		let button = <button onClick={() => setCounterOn(true)}>Start</button>;
+    const renderControls = () => {
+		let button = <button onClick={() => setCounterOn(true)} disabled={hrs == 0 && mins == 0 && secs == 0}>Start</button>;
 		if (
 			!counterOn &&
 			(hrs === startHrs || hrs === 0) &&
@@ -67,14 +67,14 @@ const BasicTimer = ({ timerType }) => {
 		) {
 			button = <button onClick={() => setCounterOn(true)}>Resume</button>;
 		}
-		if (counterOn) {
+		if (counterOn && secs > 0) {
 			button = <button onClick={() => setCounterOn(false)}>Pause</button>;
 		}
 
 		return (
 			<div className='twinkl-counter-controls'>
 				{button}
-				<button onClick={() => resetCounter()} disabled={counterOn}>
+				<button onClick={() => resetCounter()} disabled={counterOn || (!counterOn && hrs === startHrs && mins === startMins && secs === startSecs)}>
 					Reset
 				</button>
 			</div>
