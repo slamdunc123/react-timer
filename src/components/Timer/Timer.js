@@ -48,18 +48,15 @@ const Timer = ({ timerType }) => {
 	});
 
 	const handleHoursChange = (e) => {
-		console.log(
-			'slamdunc ~ file: Timer.js ~ line 59 ~ handleHoursChange ~ e',
-			e.value
-		);
-
 		setTime([e.value, mins, secs]);
 		setStartTime([e.value, mins, secs]);
 	};
+
 	const handleMinutesChange = (e) => {
 		setTime([hrs, e.value, secs]);
 		setStartTime([hrs, e.value, secs]);
 	};
+
 	const handleSecondsChange = (e) => {
 		setTime([hrs, mins, e.value]);
 		setStartTime([hrs, mins, e.value]);
@@ -99,7 +96,7 @@ const Timer = ({ timerType }) => {
 	const resetCounter = () =>
 		setTime([parseInt(startHrs), parseInt(startMins), parseInt(startSecs)]);
 
-	const clearCounterInputs = () => {
+	const handleClearCounterInputs = () => {
 		setTime([0, 0, 0]);
 		setStartTime([0, 0, 0]);
 		setThresholdOneTime([0, 0, 0]);
@@ -193,7 +190,7 @@ const Timer = ({ timerType }) => {
 			{renderCounterInputs()}
 			<button
 				className='twinkl-counter-modal-clear-button'
-				onClick={clearCounterInputs}
+				onClick={handleClearCounterInputs}
 			>
 				Clear
 			</button>

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { MdTimer } from 'react-icons/md';
 
-const TimerSelector = ({timerType, handleTimerTypeSelector}) => {
+const TimerSelector = ({timerType, onTimerTypeChange}) => {
 
     const [showTimerSelector, setShowTimerSelector] = useState(false)
     return (
@@ -10,7 +10,7 @@ const TimerSelector = ({timerType, handleTimerTypeSelector}) => {
             {
                 showTimerSelector ? (
 
-				<select value={timerType} onChange={handleTimerTypeSelector}>
+				<select value={timerType} onChange={onTimerTypeChange}>
 					<option value='stopwatch'>Stopwatch</option>
 					<option value='basictimer'>Basic Timer</option>
 					<option value='timer'>Timer</option>

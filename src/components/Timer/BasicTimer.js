@@ -40,7 +40,7 @@ const BasicTimer = ({ timerType }) => {
 	const resetCounter = () =>
 		setTime([parseInt(startHrs), parseInt(startMins), parseInt(startSecs)]);
 
-	const clearCounterInputs = () => {
+	const handleClearCounterInputs = () => {
 		setTime([0, 0, 0]);
 		setStartTime([0, 0, 0]);
 	};
@@ -107,7 +107,7 @@ const BasicTimer = ({ timerType }) => {
 			{renderCounterInputs()}
 			<button
 				className='twinkl-counter-modal-clear-button'
-				onClick={clearCounterInputs}
+				onClick={handleClearCounterInputs}
 			>
 				Clear
 			</button>

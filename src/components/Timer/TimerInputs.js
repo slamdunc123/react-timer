@@ -40,7 +40,7 @@ const TimerInputs = ({
 	};
 	const calcThresholdOneMaxMins = () => {
 		let max = '59';
-		if (startHrs === thresholdOneHrs) max = startMins - 1;
+		if (startHrs === thresholdOneHrs) max = startMins;
 		return max;
 	};
 

@@ -9,7 +9,7 @@ const TimerContainer = () => {
 	const [timerType, setTimerType] = useState('stopwatch');
 	const [title, setTitle] = useState('Title');
 
-	const handleTimerTypeSelector = (e) => {
+	const handleTimerTypeChange = (e) => {
 		setTimerType(e.target.value);
 	};
 
@@ -36,8 +36,8 @@ const TimerContainer = () => {
             <SettingsMenu 
             title={title}
             timerType={timerType}
-            handleTimerTypeSelector={handleTimerTypeSelector}
-            handleTitleChange={handleTitleChange}
+            onTimerTypeChange={handleTimerTypeChange}
+            onTitleChange={handleTitleChange}
             />
 			<Advert />
 			<div className='twinkl-timer-title'>{title}</div>

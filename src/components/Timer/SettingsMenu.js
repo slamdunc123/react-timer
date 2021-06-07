@@ -8,8 +8,8 @@ import { MdSettings } from 'react-icons/md';
 const SettingsMenu = ({
 	title,
 	timerType,
-	handleTimerTypeSelector,
-	handleTitleChange,
+	onTimerTypeChange,
+	onTitleChange,
 }) => {
 	const [showSettingsMenu, setShowSettingsMenu] = useState(false);
 	return (
@@ -22,10 +22,10 @@ const SettingsMenu = ({
 				<div className='twinkl-timer-settings-menu'>
                     <TimerSelector
                         timerType={timerType}
-                        handleTimerTypeSelector={handleTimerTypeSelector}
+                        onTimerTypeChange={onTimerTypeChange}
                     />
 					<TitleSelector
-						handleTitleChange={handleTitleChange}
+						onTitleChange={onTitleChange}
 						title={title}
                         timerType={timerType}
 					/>

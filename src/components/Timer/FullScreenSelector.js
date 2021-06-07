@@ -7,7 +7,7 @@ const FullScreenSelector = () => {
 	const [fullScreen, setFullScreen] = useState(false);
 	const elem = document.documentElement;
 
-	const handleFullScreen = () => {
+	const handleFullScreenToggle = () => {
 		if (!fullScreen) {
 			setFullScreen(true);
 			elem.requestFullscreen();
@@ -19,7 +19,7 @@ const FullScreenSelector = () => {
 
 	return (
 		<div className='twinkl-fullscreen-selector-container'>
-           {fullScreen ?  <MdFullscreenExit onClick={handleFullScreen} /> : <MdFullscreen onClick={handleFullScreen} />}
+           {fullScreen ?  <MdFullscreenExit onClick={handleFullScreenToggle} /> : <MdFullscreen onClick={handleFullScreenToggle} />}
 		</div>
 	);
 };
