@@ -7,7 +7,7 @@ const TitleSelector = ({ onTitleChange, title }) => {
 		<div className="twinkl-timer-title-selector-container">
             <MdTextFields onClick={() => setShowTitleTextInput(!showTitleTextInput)}/>
             {
-               showTitleTextInput ?  <input type='text' onChange={onTitleChange} placeholder='Title'value={title} maxLength="20"/> : null
+               showTitleTextInput ?  <input type='text' onChange={onTitleChange} placeholder={'Title'} value={title} maxLength="20"/> : null
             }
 			
 		</div>

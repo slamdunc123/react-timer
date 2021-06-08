@@ -27,7 +27,6 @@ const SettingsMenu = ({
 					<TitleSelector
 						onTitleChange={onTitleChange}
 						title={title}
-                        timerType={timerType}
 					/>
 					<ThemeSelector />
 				</div>
