@@ -3,7 +3,7 @@ import moment from 'moment';
 import TimerIndicator from './TimerIndicator';
 import TimerModal from './TimerModal';
 import TimerInputs from './TimerInputs';
-import { GoSettings } from 'react-icons/go';
+import { MdSettings } from 'react-icons/md';
 import { MdClose } from 'react-icons/md';
 
 const Timer = ({ timerType }) => {
@@ -104,7 +104,14 @@ const Timer = ({ timerType }) => {
 	};
 
 	const renderControls = () => {
-		let button = <button onClick={() => setCounterOn(true)} disabled={hrs == 0 && mins == 0 && secs == 0}>Start</button>;
+		let button = (
+			<button
+				onClick={() => setCounterOn(true)}
+				disabled={hrs == 0 && mins == 0 && secs == 0}
+			>
+				Start
+			</button>
+		);
 		if (
 			!counterOn &&
 			(hrs === startHrs || hrs === 0) &&
@@ -132,7 +139,16 @@ const Timer = ({ timerType }) => {
 		return (
 			<div className='twinkl-counter-controls'>
 				{button}
-				<button onClick={() => resetCounter()} disabled={counterOn || (!counterOn && hrs === startHrs && mins === startMins && secs === startSecs)}>
+				<button
+					onClick={() => resetCounter()}
+					disabled={
+						counterOn ||
+						(!counterOn &&
+							hrs === startHrs &&
+							mins === startMins &&
+							secs === startSecs)
+					}
+				>
 					Reset
 				</button>
 			</div>
@@ -234,10 +250,12 @@ const Timer = ({ timerType }) => {
 				{renderControls()}
 			</div>
 			{!counterOn ? (
-				<div className='twinkl-timer-modal-button'>
-					<GoSettings onClick={() => setIsModalOpen(true)}>
-						Open Modal
-					</GoSettings>
+				<div
+					className='twinkl-timer-modal-button'
+					onClick={() => setIsModalOpen(true)}
+				>
+					<MdSettings />
+					Settings
 				</div>
 			) : null}
 			{counterOn ? renderIndicator() : null}

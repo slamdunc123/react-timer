@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import Advert from './Advert';
 import Stopwatch from './Stopwatch';
 import Timer from './Timer';
-import BasicTimer from './BasicTimer';
+import Countdown from './Countdown';
 import SettingsMenu from './SettingsMenu';
 
 const TimerContainer = () => {
@@ -22,8 +21,8 @@ const TimerContainer = () => {
 
 		if (timerType === 'stopwatch') {
 			timer = <Stopwatch />;
-		} else if (timerType === 'basictimer') {
-			timer = <BasicTimer timerType={timerType}/>;
+		} else if (timerType === 'countdown') {
+			timer = <Countdown timerType={timerType}/>;
 		} else if (timerType === 'timer') {
 			timer = <Timer timerType={timerType}/>;
 		}
@@ -39,7 +38,6 @@ const TimerContainer = () => {
             onTimerTypeChange={handleTimerTypeChange}
             onTitleChange={handleTitleChange}
             />
-			<Advert />
 			<div className='twinkl-timer-title'>{title}</div>
 			{renderTimerType()}
 		

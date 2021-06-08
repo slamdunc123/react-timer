@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import TimerModal from './TimerModal';
 import TimerInputs from './TimerInputs';
-import { GoSettings } from 'react-icons/go';
+import { MdSettings } from 'react-icons/md';
 import { MdClose } from 'react-icons/md';
 
-const BasicTimer = ({ timerType }) => {
+const Countdown = ({ timerType }) => {
 	const [[hrs, mins, secs], setTime] = useState([0, 0, 0]);
 	const [[startHrs, startMins, startSecs], setStartTime] = useState([
 		0, 0, 0,
@@ -45,8 +45,15 @@ const BasicTimer = ({ timerType }) => {
 		setStartTime([0, 0, 0]);
 	};
 
-    const renderControls = () => {
-		let button = <button onClick={() => setCounterOn(true)} disabled={hrs == 0 && mins == 0 && secs == 0}>Start</button>;
+	const renderControls = () => {
+		let button = (
+			<button
+				onClick={() => setCounterOn(true)}
+				disabled={hrs == 0 && mins == 0 && secs == 0}
+			>
+				Start
+			</button>
+		);
 		if (
 			!counterOn &&
 			(hrs === startHrs || hrs === 0) &&
@@ -67,14 +74,23 @@ const BasicTimer = ({ timerType }) => {
 		) {
 			button = <button onClick={() => setCounterOn(true)}>Resume</button>;
 		}
-        if (counterOn && (hrs > 0 || mins > 0 || secs > 0)) {
+		if (counterOn && (hrs > 0 || mins > 0 || secs > 0)) {
 			button = <button onClick={() => setCounterOn(false)}>Pause</button>;
 		}
 
 		return (
 			<div className='twinkl-counter-controls'>
 				{button}
-				<button onClick={() => resetCounter()} disabled={counterOn || (!counterOn && hrs === startHrs && mins === startMins && secs === startSecs)}>
+				<button
+					onClick={() => resetCounter()}
+					disabled={
+						counterOn ||
+						(!counterOn &&
+							hrs === startHrs &&
+							mins === startMins &&
+							secs === startSecs)
+					}
+				>
 					Reset
 				</button>
 			</div>
@@ -105,7 +121,7 @@ const BasicTimer = ({ timerType }) => {
 				close
 			</MdClose>
 			{renderCounterInputs()}
-            <button
+			<button
 				className='twinkl-counter-modal-clear-button'
 				onClick={() => setIsModalOpen(false)}
 			>
@@ -150,14 +166,16 @@ const BasicTimer = ({ timerType }) => {
 				{renderControls()}
 			</div>
 			{!counterOn ? (
-				<div className='twinkl-timer-modal-button'>
-					<GoSettings onClick={() => setIsModalOpen(true)}>
-						Open Modal
-					</GoSettings>
+				<div
+					className='twinkl-timer-modal-button'
+					onClick={() => setIsModalOpen(true)}
+				>
+					<MdSettings />
+					Settings
 				</div>
 			) : null}
 		</>
 	);
 };
 
-export default BasicTimer;
+export default Countdown;
