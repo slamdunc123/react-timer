@@ -88,7 +88,7 @@ const TimerInputs = ({
 						onChange={onHoursChange}
 						placeholder='0'
 						maxMenuHeight={150}
-						value={{value: startHrs, label: `${startHrs}`}}
+						value={{ value: startHrs, label: `${startHrs}` }}
 					/>
 				</div>
 				<div className='twinkl-counter-input'>
@@ -97,7 +97,7 @@ const TimerInputs = ({
 						onChange={onMinutesChange}
 						placeholder='0'
 						maxMenuHeight={150}
-                        value={{value: startMins, label: `${startMins}`}}
+						value={{ value: startMins, label: `${startMins}` }}
 					/>
 				</div>
 				<div className='twinkl-counter-input'>
@@ -106,7 +106,7 @@ const TimerInputs = ({
 						onChange={onSecondsChange}
 						placeholder='0'
 						maxMenuHeight={150}
-                        value={{value: startSecs, label: `${startSecs}`}}
+						value={{ value: startSecs, label: `${startSecs}` }}
 					/>
 				</div>
 				<span>Start time</span>
@@ -123,7 +123,10 @@ const TimerInputs = ({
 								onChange={onThresholdOneHoursChange}
 								placeholder='0'
 								maxMenuHeight={150}
-                                value={{value: thresholdOneHrs, label: `${thresholdOneHrs}`}}
+								value={{
+									value: thresholdOneHrs,
+									label: `${thresholdOneHrs}`,
+								}}
 							/>
 						</div>
 						<div className='twinkl-counter-input'>
@@ -135,7 +138,10 @@ const TimerInputs = ({
 								onChange={onThresholdOneMinutesChange}
 								placeholder='0'
 								maxMenuHeight={150}
-                                value={{value: thresholdOneMins, label: `${thresholdOneMins}`}}
+								value={{
+									value: thresholdOneMins,
+									label: `${thresholdOneMins}`,
+								}}
 							/>
 						</div>
 						<div className='twinkl-counter-input'>
@@ -147,7 +153,10 @@ const TimerInputs = ({
 								onChange={onThresholdOneSecondsChange}
 								placeholder='0'
 								maxMenuHeight={150}
-                                value={{value: thresholdOneSecs, label: `${thresholdOneSecs}`}}
+								value={{
+									value: thresholdOneSecs,
+									label: `${thresholdOneSecs}`,
+								}}
 							/>
 						</div>
 						<span>1st Threshold</span>
@@ -162,7 +171,10 @@ const TimerInputs = ({
 								onChange={onThresholdTwoHoursChange}
 								placeholder='0'
 								maxMenuHeight={150}
-                                value={{value: thresholdTwoHrs, label: `${thresholdTwoHrs}`}}
+								value={{
+									value: thresholdTwoHrs,
+									label: `${thresholdTwoHrs}`,
+								}}
 							/>
 						</div>
 						<div className='twinkl-counter-input'>
@@ -174,7 +186,10 @@ const TimerInputs = ({
 								onChange={onThresholdTwoMinutesChange}
 								placeholder='0'
 								maxMenuHeight={150}
-                                value={{value: thresholdTwoMins, label: `${thresholdTwoMins}`}}
+								value={{
+									value: thresholdTwoMins,
+									label: `${thresholdTwoMins}`,
+								}}
 							/>
 						</div>
 						<div className='twinkl-counter-input'>
@@ -186,7 +201,10 @@ const TimerInputs = ({
 								onChange={onThresholdTwoSecondsChange}
 								placeholder='0'
 								maxMenuHeight={150}
-                                value={{value: thresholdTwoSecs, label: `${thresholdTwoSecs}`}}
+								value={{
+									value: thresholdTwoSecs,
+									label: `${thresholdTwoSecs}`,
+								}}
 							/>
 						</div>
 						<span>2nd Threshold</span>

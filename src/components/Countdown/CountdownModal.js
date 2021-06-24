@@ -5,9 +5,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import SettingsIcon from '@material-ui/icons/Settings';
 import useModalStyles from './styles';
-import TimerSettings from './TimerSettings';
+import CountdownSettings from './CountdownSettings';
 
-const TimerModal = ({ settings, onChange, onClearInputs }) => {
+const CountdownModal = ({ settings, onChange, onClearInputs }) => {
     const classes = useModalStyles();
     const [open, setOpen] = useState(false);
 
@@ -31,7 +31,10 @@ const TimerModal = ({ settings, onChange, onClearInputs }) => {
                 aria-describedby="alert-dialog-description"
             >
                 <DialogContent>
-                    <TimerSettings settings={settings} onChange={onChange} />
+                    <CountdownSettings
+                        settings={settings}
+                        onChange={onChange}
+                    />
                 </DialogContent>
                 <DialogActions className={classes.actions}>
                     <Button onClick={onClearInputs} className={classes.button}>
@@ -46,4 +49,4 @@ const TimerModal = ({ settings, onChange, onClearInputs }) => {
     );
 };
 
-export default TimerModal;
+export default CountdownModal;

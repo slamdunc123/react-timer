@@ -22,9 +22,9 @@ const TimerContainer = () => {
 		if (timerType === 'stopwatch') {
 			timer = <Stopwatch />;
 		} else if (timerType === 'countdown') {
-			timer = <Countdown timerType={timerType}/>;
+			timer = <Countdown timerType={timerType} />;
 		} else if (timerType === 'timer') {
-			timer = <Timer timerType={timerType}/>;
+			timer = <Timer timerType={timerType} />;
 		}
 
 		return timer;
@@ -32,15 +32,14 @@ const TimerContainer = () => {
 
 	return (
 		<div className='twinkl-timer-app-container'>
-            <SettingsMenu 
-            title={title}
-            timerType={timerType}
-            onTimerTypeChange={handleTimerTypeChange}
-            onTitleChange={handleTitleChange}
-            />
+			<SettingsMenu
+				title={title}
+				timerType={timerType}
+				onTimerTypeChange={handleTimerTypeChange}
+				onTitleChange={handleTitleChange}
+			/>
 			<div className='twinkl-timer-title'>{title}</div>
 			{renderTimerType()}
-		
 		</div>
 	);
 };

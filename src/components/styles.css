@@ -1,0 +1,518 @@
+.twinkl-timer-app-container {
+    background-color: #2299f9;
+    color: #ffffff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.twinkl-timer-app-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 610px;
+    justify-content: flex-start;
+    margin-top: 50px;
+}
+
+.twinkl-logo {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+}
+
+.twinkl-fullscreen-selector-container > svg {
+    height: 2rem;
+    width: 2rem;
+    cursor: pointer;
+}
+
+.twinkl-timer-theme-colors-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.twinkl-timer-theme-colors-container > svg {
+    height: 1.5rem;
+    width: 1.5rem;
+    cursor: pointer;
+    padding: 0.2rem;
+}
+
+.twinkl-timer-theme-colors > button {
+    height: 50px;
+}
+
+.twinkl-timer-selector-container {
+    display: flex;
+    width: 100%;
+    margin-bottom: 2px;
+}
+
+.twinkl-timer-selector-container > svg {
+    height: 1.5rem;
+    width: 1.5rem;
+    cursor: pointer;
+    padding: 0.2rem;
+}
+
+.twinkl-timer-selector-container > select {
+    outline: none;
+    border: none;
+    width: 60%;
+    color: #2299f9;
+}
+
+.twinkl-timer-title {
+    display: flex;
+    justify-content: center;
+    width: 200px;
+}
+
+.twinkl-timer-title > input {
+    height: 100%;
+    outline: none;
+    border: none;
+    text-align: center;
+    font-weight: bold;
+    font-family: inherit;
+    width: 100%;
+}
+
+.twinkl-timer-title-selector-container {
+    display: flex;
+    margin-bottom: 2px;
+}
+
+.twinkl-timer-title-selector-container > input {
+    color: #2299f9;
+}
+
+.twinkl-timer-title-selector-container > svg {
+    height: 1.5rem;
+    width: 1.5rem;
+    cursor: pointer;
+    padding: 0.2rem;
+}
+
+.twinkl-timer-title-selector-container > input {
+    outline: none;
+    border: none;
+    width: 58%;
+}
+
+.twinkl-counter-display-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.twinkl-counter-display {
+    display: flex;
+    justify-content: center;
+    height: 200px;
+    width: 100%;
+}
+
+.twinkl-counter-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
+    width: 250px;
+}
+
+.twinkl-counter-unit > span {
+    font-size: 2rem;
+}
+
+.twinkl-counter-input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.twinkl-counter-input-container.timer {
+    justify-content: flex-start;
+    height: 310px;
+}
+.twinkl-counter-input-container.countdown {
+    justify-content: flex-start;
+    height: 210px;
+    width: 400px;
+}
+
+.twinkl-counter-input-group-headings {
+    display: flex;
+    color: #2299f9;
+}
+
+.twinkl-counter-input-group-headings > span {
+    width: 84px;
+    text-align: left;
+    margin-bottom: 0.5rem;
+}
+
+.twinkl-counter-input-group {
+    display: flex;
+    align-items: center;
+    color: #2299f9;
+    margin-bottom: 1rem;
+}
+
+.twinkl-counter-input {
+    display: flex;
+    flex-direction: column;
+    outline: none;
+    border: none;
+    width: 75px;
+    margin-right: 0.5rem;
+    color: #2299f9;
+}
+
+.twinkl-counter-input > span {
+    font-size: 0.75rem;
+}
+
+.twinkl-counter-controls {
+    display: flex;
+}
+
+.twinkl-counter-controls > button {
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+    border-color: #d9d9d9;
+    border-width: 0px;
+    cursor: pointer;
+    margin: 0.5rem;
+    color: #7a7a7a;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.twinkl-counter-controls > button > svg {
+    font-size: 3rem;
+}
+
+.twinkl-counter-controls > button:hover:enabled {
+    background-color: #d9d9d9;
+    color: #6c757d;
+    cursor: pointer;
+}
+
+.twinkl-counter-controls > button:hover {
+    cursor: default;
+}
+
+.twinkl-timer-settings-container {
+    position: absolute;
+    top: 5rem;
+    left: 1rem;
+    width: 200px;
+}
+
+.twinkl-timer-settings-container > svg {
+    height: 1.5rem;
+    width: 1.5rem;
+    cursor: pointer;
+    padding: 0.2rem;
+}
+
+.twinkl-timer-settings-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.twinkl-timer-theme-color-picker {
+    margin-top: 10px;
+}
+
+.twinkl-counter-indicator-container {
+    display: flex;
+    justify-content: space-evenly;
+    width: 500px;
+}
+
+.twinkl-timer-modal-button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.twinkl-timer-modal-button > svg {
+    height: 1.5rem;
+    width: 1.5rem;
+    padding: 0.2rem;
+}
+
+.twinkl-counter-modal-clear-button {
+    color: #ffffff;
+    cursor: pointer;
+    background-color: #2299f9;
+    border: 1px solid #ffffff;
+    height: 30px;
+    width: 70px;
+    margin: 0.11rem;
+}
+
+.twinkl-counter-modal-clear-button:hover {
+    color: #2299f9;
+    background-color: #ffffff;
+}
+
+.twinkl-counter-modal-close-button {
+    color: #ffffff;
+    cursor: pointer;
+    background-color: #2299f9;
+    border: 1px solid #ffffff;
+}
+
+.twinkl-counter-modal-close-button:hover {
+    color: #2299f9;
+    background-color: #ffffff;
+}
+
+.ReactModal__Overlay {
+    opacity: 0;
+    transition: opacity 500ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+    opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+    opacity: 0;
+}
+
+@media (max-width: 320px) {
+    .twinkl-timer-app-body {
+        height: 300px;
+        margin-top: 5rem;
+    }
+    .twinkl-counter-display-container {
+        width: 250px;
+        margin-bottom: 1rem;
+    }
+    .twinkl-counter-display {
+        height: 100px;
+    }
+    .twinkl-timer-title > input {
+        font-size: 1.5rem;
+        width: 100%;
+    }
+    .twinkl-counter-unit {
+        font-size: 2rem;
+        width: 50px;
+    }
+    .twinkl-counter-unit > span {
+        font-size: 1rem;
+    }
+    .twinkl-counter-controls > button {
+        height: 2rem;
+        width: 2rem;
+    }
+    .twinkl-counter-controls > button > svg {
+        height: 1.5rem;
+        width: 1.5rem;
+    }
+    .twinkl-counter-input {
+        width: 45px;
+        font-size: 0.75rem;
+    }
+    .twinkl-counter-input-group-headings {
+        width: 150px;
+    }
+    .twinkl-counter-input-group > span {
+        font-size: 0.75rem;
+    }
+
+    .twinkl-timer-modal-button > svg {
+        height: 1.25rem;
+        width: 1.25rem;
+    }
+}
+@media (min-width: 321px) and (max-width: 375px) {
+    .twinkl-timer-app-body {
+        height: 400px;
+        margin-top: 10rem;
+    }
+    .twinkl-counter-display-container {
+        width: 250px;
+        margin-bottom: 1rem;
+    }
+    .twinkl-counter-display {
+        height: 150px;
+    }
+    .twinkl-counter-unit {
+        font-size: 3rem;
+        width: 100px;
+    }
+    .twinkl-counter-unit > span {
+        font-size: 1.5rem;
+    }
+
+    .twinkl-timer-title {
+        width: 300px;
+    }
+    .twinkl-timer-title > input {
+        font-size: 2rem;
+        width: 100%;
+    }
+    .twinkl-counter-controls > button {
+        height: 2rem;
+        width: 2rem;
+    }
+    .twinkl-counter-controls > button > svg {
+        height: 1.5rem;
+        width: 1.5rem;
+    }
+
+    .twinkl-timer-modal-button > svg {
+        height: 1.25rem;
+        width: 1.25rem;
+    }
+
+    .twinkl-counter-input {
+        font-size: 0.75rem;
+        flex: 1;
+    }
+    .twinkl-counter-input-group-headings {
+        width: 200px;
+    }
+    .twinkl-counter-input-group > span {
+        font-size: 0.75rem;
+        flex: 1;
+    }
+}
+@media (min-width: 376px) and (max-width: 600px) {
+    .twinkl-timer-app-body {
+        height: 400px;
+    }
+    .twinkl-counter-display-container {
+        width: 350px;
+    }
+    .twinkl-counter-unit {
+        font-size: 3rem;
+        width: 100px;
+    }
+    .twinkl-timer-title {
+        width: 375px;
+    }
+    .twinkl-timer-title > input {
+        font-size: 3rem;
+    }
+    .twinkl-counter-controls > button {
+        height: 3rem;
+        width: 3rem;
+    }
+    .twinkl-counter-controls > button > svg {
+        height: 2rem;
+        width: 2rem;
+    }
+    .twinkl-counter-input {
+        font-size: 0.75rem;
+        flex: 1;
+    }
+
+    .twinkl-counter-input-group > span {
+        font-size: 0.75rem;
+        flex: 1;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 768px) {
+    .twinkl-timer-app-body {
+        height: 400px;
+    }
+    .twinkl-counter-display-container {
+        width: 450px;
+    }
+    .twinkl-counter-display {
+        justify-content: space-evenly;
+    }
+    .twinkl-counter-unit {
+        font-size: 4rem;
+        width: 100px;
+    }
+    .twinkl-timer-title {
+        width: 400px;
+    }
+    .twinkl-timer-title > input {
+        font-size: 3rem;
+    }
+    .twinkl-counter-controls > button {
+        height: 4rem;
+        width: 4rem;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+    .twinkl-timer-app-body {
+        margin-top: 200px;
+    }
+    .twinkl-counter-display-container {
+        width: 700px;
+    }
+
+    .twinkl-counter-display {
+        justify-content: space-evenly;
+    }
+    .twinkl-counter-unit {
+        font-size: 6rem;
+        width: 100px;
+    }
+    .twinkl-timer-title > input {
+        font-size: 5rem;
+    }
+
+    .twinkl-timer-title {
+        width: 600px;
+    }
+    .twinkl-counter-display {
+        margin-bottom: 2rem;
+    }
+    .twinkl-counter-controls {
+        margin-bottom: 2rem;
+    }
+}
+
+@media (min-width: 993px) {
+    .twinkl-timer-app-body {
+        margin-top: 200px;
+    }
+    .twinkl-counter-display-container {
+        width: 800px;
+    }
+
+    .twinkl-counter-display {
+        justify-content: space-evenly;
+    }
+    .twinkl-counter-unit {
+        font-size: 7rem;
+        width: 100px;
+    }
+    .twinkl-timer-title > input {
+        font-size: 5rem;
+    }
+
+    .twinkl-timer-title {
+        width: 700px;
+    }
+    .twinkl-counter-display {
+        margin-bottom: 2rem;
+    }
+    .twinkl-counter-controls {
+        margin-bottom: 2rem;
+    }
+}

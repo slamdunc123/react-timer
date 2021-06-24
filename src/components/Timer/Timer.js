@@ -1,266 +1,184 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import moment from 'moment';
-import TimerIndicator from './TimerIndicator';
+import React, { useState, useEffect } from 'react';
 import TimerModal from './TimerModal';
-import TimerInputs from './TimerInputs';
-import { MdSettings } from 'react-icons/md';
-import { MdClose } from 'react-icons/md';
+import { convertHMStoSeconds, convertSecondsToHMS, padZero } from '../../utils';
+import PauseIcon from '@material-ui/icons/Pause';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import ReplayIcon from '@material-ui/icons/Replay';
 
-const Timer = ({ timerType }) => {
-	const [[hrs, mins, secs], setTime] = useState([0, 0, 0]);
-	const [
-		[thresholdOneHrs, thresholdOneMins, thresholdOneSecs],
-		setThresholdOneTime,
-	] = useState([0, 0, 0]);
-	const [
-		[thresholdTwoHrs, thresholdTwoMins, thresholdTwoSecs],
-		setThresholdTwoTime,
-	] = useState([0, 0, 0]);
-	const [[startHrs, startMins, startSecs], setStartTime] = useState([
-		0, 0, 0,
-	]);
-	const [counterOn, setCounterOn] = useState(false);
-	const [isModalOpen, setIsModalOpen] = useState(false);
+const defaultSettings = {
+    startHrs: 0,
+    startMins: 0,
+    startSecs: 0,
+    thresholdOneHrs: 0,
+    thresholdOneMins: 0,
+    thresholdOneSecs: 0,
+    thresholdTwoHrs: 0,
+    thresholdTwoMins: 0,
+    thresholdTwoSecs: 0,
+};
+const Timer = ({ onBackgroundColorChange }) => {
+    const [timeInSeconds, setTimeInSeconds] = useState(0);
+    const [settings, setSettings] = useState(defaultSettings);
 
-	const getCurrentTimeObject = () => {
-		const entries = new Map([
-			['h', parseInt(hrs, 10)],
-			['m', parseInt(mins, 10)],
-			['s', parseInt(secs, 10)],
-		]);
-		const currentTimeObj = Object.fromEntries(entries);
+    useEffect(() => {
+        setTimeInSeconds(
+            convertHMStoSeconds([
+                settings.startHrs,
+                settings.startMins,
+                settings.startSecs,
+            ])
+        );
+    }, [settings]);
 
-		return currentTimeObj;
-	};
+    const [counterOn, setCounterOn] = useState(false);
 
-	const currentTime = moment(getCurrentTimeObject());
+    const resetCounter = () =>
+        setTimeInSeconds(
+            convertHMStoSeconds([
+                settings.startHrs,
+                settings.startMins,
+                settings.startSecs,
+            ])
+        );
 
-	const thresholdTimeOne = moment({
-		h: thresholdOneHrs,
-		m: thresholdOneMins,
-		s: thresholdOneSecs,
-	});
+    const handleClearCounterInputs = () => {
+        resetCounter();
+        setSettings(defaultSettings);
+    };
 
-	const thresholdTimeTwo = moment({
-		h: thresholdTwoHrs,
-		m: thresholdTwoMins,
-		s: thresholdTwoSecs,
-	});
+    const renderControls = () => {
+        const startTimeInSecs = convertHMStoSeconds([
+            settings.startHrs,
+            settings.startMins,
+            settings.startSecs,
+        ]);
+        let button;
+        if (
+            !counterOn &&
+            (timeInSeconds === 0 || timeInSeconds === startTimeInSecs)
+        ) {
+            button = (
+                <button
+                    onClick={() => setCounterOn(true)}
+                    disabled={timeInSeconds === 0}
+                >
+                    <PlayArrowIcon />
+                </button>
+            );
+        } else if (!counterOn && timeInSeconds < startTimeInSecs) {
+            button = (
+                <button onClick={() => setCounterOn(true)}>
+                    <PlayArrowIcon />
+                </button>
+            );
+        } else {
+            button = (
+                <button onClick={() => setCounterOn(false)}>
+                    <PauseIcon />
+                </button>
+            );
+        }
 
-	const handleHoursChange = (e) => {
-		setTime([e.value, mins, secs]);
-		setStartTime([e.value, mins, secs]);
-	};
+        return (
+            <div className="twinkl-counter-controls">
+                {button}
+                <button
+                    onClick={() => resetCounter()}
+                    disabled={
+                        counterOn ||
+                        (!counterOn && timeInSeconds === startTimeInSecs)
+                    }
+                >
+                    <ReplayIcon />
+                </button>
+            </div>
+        );
+    };
 
-	const handleMinutesChange = (e) => {
-		setTime([hrs, e.value, secs]);
-		setStartTime([hrs, e.value, secs]);
-	};
+    useEffect(() => {
+        let interval;
 
-	const handleSecondsChange = (e) => {
-		setTime([hrs, mins, e.value]);
-		setStartTime([hrs, mins, e.value]);
-	};
+        if (counterOn) {
+            interval = setInterval(
+                () => setTimeInSeconds((pre) => pre - 1),
+                1000
+            );
+        }
+        return () => clearInterval(interval);
+    }, [counterOn]);
 
-	const handleThresholdOneHoursChange = (e) => {
-		console.log(hrs, e.value);
-		setThresholdOneTime([e.value, thresholdOneMins, thresholdOneSecs]);
-	};
-	const handleThresholdOneMinutesChange = (e) => {
-		setThresholdOneTime([thresholdOneHrs, e.value, thresholdOneSecs]);
-	};
-	const handleThresholdOneSecondsChange = (e) => {
-		setThresholdOneTime([thresholdOneHrs, thresholdOneMins, e.value]);
-	};
-	const handleThresholdTwoHoursChange = (e) => {
-		setThresholdTwoTime([e.value, thresholdTwoMins, thresholdTwoSecs]);
-	};
-	const handleThresholdTwoMinutesChange = (e) => {
-		setThresholdTwoTime([thresholdTwoHrs, e.value, thresholdTwoSecs]);
-	};
-	const handleThresholdTwoSecondsChange = (e) => {
-		setThresholdTwoTime([thresholdTwoHrs, thresholdTwoMins, e.value]);
-	};
+    useEffect(() => {
+        if (timeInSeconds === 0) setCounterOn(false);
+    }, [timeInSeconds]);
 
-	const startCounter = useCallback(() => {
-		if (hrs == 0 && mins == 0 && secs == 0) setCounterOn(false);
-		else if (mins == 0 && secs == 0) {
-			setTime([hrs - 1, 59, 59]);
-		} else if (secs == 0) {
-			setTime([hrs, mins - 1, 59]);
-		} else {
-			setTime([hrs, mins, secs - 1]);
-		}
-	}, [hrs, mins, secs]);
+    useEffect(() => {
+        const startTimeInSecs = convertHMStoSeconds([
+            settings.startHrs,
+            settings.startMins,
+            settings.startSecs,
+        ]);
+        const thresholdTimeOneInSecs = convertHMStoSeconds([
+            settings.thresholdOneHrs,
+            settings.thresholdOneMins,
+            settings.thresholdOneSecs,
+        ]);
+        const thresholdTimeTwoInSecs = convertHMStoSeconds([
+            settings.thresholdTwoHrs,
+            settings.thresholdTwoMins,
+            settings.thresholdTwoSecs,
+        ]);
+        let color;
+        if (
+            (timeInSeconds < startTimeInSecs || counterOn) &&
+            timeInSeconds > thresholdTimeOneInSecs
+        ) {
+            color = 'green';
+        } else if (
+            timeInSeconds <= thresholdTimeOneInSecs &&
+            timeInSeconds > thresholdTimeTwoInSecs
+        ) {
+            color = 'orange';
+        } else if (
+            timeInSeconds <= thresholdTimeTwoInSecs &&
+            startTimeInSecs > 0
+        ) {
+            color = 'red';
+        } else color = null;
 
-	const resetCounter = () =>
-		setTime([parseInt(startHrs), parseInt(startMins), parseInt(startSecs)]);
+        onBackgroundColorChange(color);
+    }, [timeInSeconds, counterOn, settings, onBackgroundColorChange]);
 
-	const handleClearCounterInputs = () => {
-		setTime([0, 0, 0]);
-		setStartTime([0, 0, 0]);
-		setThresholdOneTime([0, 0, 0]);
-		setThresholdTwoTime([0, 0, 0]);
-	};
+    let [hrs, mins, secs] = convertSecondsToHMS(timeInSeconds);
 
-	const renderControls = () => {
-		let button = (
-			<button
-				onClick={() => setCounterOn(true)}
-				disabled={hrs == 0 && mins == 0 && secs == 0}
-			>
-				Start
-			</button>
-		);
-		if (
-			!counterOn &&
-			(hrs === startHrs || hrs === 0) &&
-			(mins === startMins || mins === 0) &&
-			(secs === startSecs || secs === 0)
-		) {
-			button = (
-				<button
-					onClick={() => setCounterOn(true)}
-					disabled={hrs == 0 && mins == 0 && secs == 0}
-				>
-					Start
-				</button>
-			);
-		} else if (
-			!counterOn &&
-			(hrs < startHrs || mins < startMins || secs < startSecs)
-		) {
-			button = <button onClick={() => setCounterOn(true)}>Resume</button>;
-		}
-		if (counterOn && (hrs > 0 || mins > 0 || secs > 0)) {
-			button = <button onClick={() => setCounterOn(false)}>Pause</button>;
-		}
+    return (
+        <>
+            <div className="twinkl-counter-display-container">
+                <div className="twinkl-counter-display">
+                    <div className="twinkl-counter-unit">
+                        {padZero(hrs)}
+                        <span>hrs</span>
+                    </div>
+                    <div className="twinkl-counter-unit">
+                        {padZero(mins)}
+                        <span>mins</span>
+                    </div>
+                    <div className="twinkl-counter-unit">
+                        {padZero(secs)}
+                        <span>secs</span>
+                    </div>
+                </div>
+                {renderControls()}
+            </div>
 
-		return (
-			<div className='twinkl-counter-controls'>
-				{button}
-				<button
-					onClick={() => resetCounter()}
-					disabled={
-						counterOn ||
-						(!counterOn &&
-							hrs === startHrs &&
-							mins === startMins &&
-							secs === startSecs)
-					}
-				>
-					Reset
-				</button>
-			</div>
-		);
-	};
-
-	const renderCounterInputs = () => {
-		if (counterOn) return;
-		return (
-			<TimerInputs
-				timerType={timerType}
-				startHrs={startHrs}
-				startMins={startMins}
-				startSecs={startSecs}
-				thresholdOneHrs={thresholdOneHrs}
-				thresholdOneMins={thresholdOneMins}
-				thresholdOneSecs={thresholdOneSecs}
-				thresholdTwoHrs={thresholdTwoHrs}
-				thresholdTwoMins={thresholdTwoMins}
-				thresholdTwoSecs={thresholdTwoSecs}
-				onHoursChange={handleHoursChange}
-				onMinutesChange={handleMinutesChange}
-				onSecondsChange={handleSecondsChange}
-				onThresholdOneHoursChange={handleThresholdOneHoursChange}
-				onThresholdOneMinutesChange={handleThresholdOneMinutesChange}
-				onThresholdOneSecondsChange={handleThresholdOneSecondsChange}
-				onThresholdTwoHoursChange={handleThresholdTwoHoursChange}
-				onThresholdTwoMinutesChange={handleThresholdTwoMinutesChange}
-				onThresholdTwoSecondsChange={handleThresholdTwoSecondsChange}
-			/>
-		);
-	};
-
-	const renderIndicator = () => {
-		if (hrs === 0 && mins === 0 && secs === 0) {
-			return null;
-		} else
-			return (
-				<TimerIndicator
-					currentTime={currentTime}
-					thresholdTimeOne={thresholdTimeOne}
-					thresholdTimeTwo={thresholdTimeTwo}
-				/>
-			);
-	};
-
-	const modalBody = (
-		<>
-			<MdClose
-				className='twinkl-counter-modal-close-button'
-				onClick={() => setIsModalOpen(false)}
-			>
-				close
-			</MdClose>
-			{renderCounterInputs()}
-			<button
-				className='twinkl-counter-modal-clear-button'
-				onClick={() => setIsModalOpen(false)}
-			>
-				Set
-			</button>
-			<button
-				className='twinkl-counter-modal-clear-button'
-				onClick={handleClearCounterInputs}
-			>
-				Clear
-			</button>
-		</>
-	);
-
-	useEffect(() => {
-		let interval;
-
-		if (counterOn) {
-			interval = setInterval(() => startCounter(), 1000);
-		}
-		return () => clearInterval(interval);
-	}, [counterOn, startCounter]);
-
-	return (
-		<>
-			{console.log(hrs, mins, secs)}
-			<TimerModal isModalOpen={isModalOpen} modalBody={modalBody} />
-			<div className='twinkl-counter-display-container'>
-				<div className='twinkl-counter-display'>
-					<div className='twinkl-counter-unit'>
-						{hrs.toString().padStart(2, '0')}
-						<span>hrs</span>
-					</div>
-					<div className='twinkl-counter-unit'>
-						{mins.toString().padStart(2, '0')}
-						<span>mins</span>
-					</div>
-					<div className='twinkl-counter-unit'>
-						{secs.toString().padStart(2, '0')}
-						<span>secs</span>
-					</div>
-				</div>
-				{renderControls()}
-			</div>
-			{!counterOn ? (
-				<div
-					className='twinkl-timer-modal-button'
-					onClick={() => setIsModalOpen(true)}
-				>
-					<MdSettings />
-					Settings
-				</div>
-			) : null}
-			{counterOn ? renderIndicator() : null}
-		</>
-	);
+            {!counterOn ? (
+                <TimerModal
+                    settings={settings}
+                    onChange={setSettings}
+                    onClearInputs={handleClearCounterInputs}
+                />
+            ) : null}
+        </>
+    );
 };
 
 export default Timer;

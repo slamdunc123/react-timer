@@ -1,32 +1,88 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import moment from 'moment';
+import TimerIndicator from './TimerIndicator';
 import TimerModal from './TimerModal';
 import TimerInputs from './TimerInputs';
 import { MdSettings } from 'react-icons/md';
 import { MdClose } from 'react-icons/md';
 
-const Countdown = ({ timerType }) => {
+const Timer = ({ timerType }) => {
 	const [[hrs, mins, secs], setTime] = useState([0, 0, 0]);
+	const [
+		[thresholdOneHrs, thresholdOneMins, thresholdOneSecs],
+		setThresholdOneTime,
+	] = useState([0, 0, 0]);
+	const [
+		[thresholdTwoHrs, thresholdTwoMins, thresholdTwoSecs],
+		setThresholdTwoTime,
+	] = useState([0, 0, 0]);
 	const [[startHrs, startMins, startSecs], setStartTime] = useState([
 		0, 0, 0,
 	]);
 	const [counterOn, setCounterOn] = useState(false);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
+	const getCurrentTimeObject = () => {
+		const entries = new Map([
+			['h', parseInt(hrs, 10)],
+			['m', parseInt(mins, 10)],
+			['s', parseInt(secs, 10)],
+		]);
+		const currentTimeObj = Object.fromEntries(entries);
+
+		return currentTimeObj;
+	};
+
+	const currentTime = moment(getCurrentTimeObject());
+
+	const thresholdTimeOne = moment({
+		h: thresholdOneHrs,
+		m: thresholdOneMins,
+		s: thresholdOneSecs,
+	});
+
+	const thresholdTimeTwo = moment({
+		h: thresholdTwoHrs,
+		m: thresholdTwoMins,
+		s: thresholdTwoSecs,
+	});
+
 	const handleHoursChange = (e) => {
 		setTime([e.value, mins, secs]);
 		setStartTime([e.value, mins, secs]);
 	};
+
 	const handleMinutesChange = (e) => {
 		setTime([hrs, e.value, secs]);
 		setStartTime([hrs, e.value, secs]);
 	};
+
 	const handleSecondsChange = (e) => {
 		setTime([hrs, mins, e.value]);
 		setStartTime([hrs, mins, e.value]);
 	};
 
+	const handleThresholdOneHoursChange = (e) => {
+		console.log(hrs, e.value);
+		setThresholdOneTime([e.value, thresholdOneMins, thresholdOneSecs]);
+	};
+	const handleThresholdOneMinutesChange = (e) => {
+		setThresholdOneTime([thresholdOneHrs, e.value, thresholdOneSecs]);
+	};
+	const handleThresholdOneSecondsChange = (e) => {
+		setThresholdOneTime([thresholdOneHrs, thresholdOneMins, e.value]);
+	};
+	const handleThresholdTwoHoursChange = (e) => {
+		setThresholdTwoTime([e.value, thresholdTwoMins, thresholdTwoSecs]);
+	};
+	const handleThresholdTwoMinutesChange = (e) => {
+		setThresholdTwoTime([thresholdTwoHrs, e.value, thresholdTwoSecs]);
+	};
+	const handleThresholdTwoSecondsChange = (e) => {
+		setThresholdTwoTime([thresholdTwoHrs, thresholdTwoMins, e.value]);
+	};
+
 	const startCounter = useCallback(() => {
-		console.log('running');
 		if (hrs == 0 && mins == 0 && secs == 0) setCounterOn(false);
 		else if (mins == 0 && secs == 0) {
 			setTime([hrs - 1, 59, 59]);
@@ -43,6 +99,8 @@ const Countdown = ({ timerType }) => {
 	const handleClearCounterInputs = () => {
 		setTime([0, 0, 0]);
 		setStartTime([0, 0, 0]);
+		setThresholdOneTime([0, 0, 0]);
+		setThresholdTwoTime([0, 0, 0]);
 	};
 
 	const renderControls = () => {
@@ -105,11 +163,36 @@ const Countdown = ({ timerType }) => {
 				startHrs={startHrs}
 				startMins={startMins}
 				startSecs={startSecs}
+				thresholdOneHrs={thresholdOneHrs}
+				thresholdOneMins={thresholdOneMins}
+				thresholdOneSecs={thresholdOneSecs}
+				thresholdTwoHrs={thresholdTwoHrs}
+				thresholdTwoMins={thresholdTwoMins}
+				thresholdTwoSecs={thresholdTwoSecs}
 				onHoursChange={handleHoursChange}
 				onMinutesChange={handleMinutesChange}
 				onSecondsChange={handleSecondsChange}
+				onThresholdOneHoursChange={handleThresholdOneHoursChange}
+				onThresholdOneMinutesChange={handleThresholdOneMinutesChange}
+				onThresholdOneSecondsChange={handleThresholdOneSecondsChange}
+				onThresholdTwoHoursChange={handleThresholdTwoHoursChange}
+				onThresholdTwoMinutesChange={handleThresholdTwoMinutesChange}
+				onThresholdTwoSecondsChange={handleThresholdTwoSecondsChange}
 			/>
 		);
+	};
+
+	const renderIndicator = () => {
+		if (hrs === 0 && mins === 0 && secs === 0) {
+			return null;
+		} else
+			return (
+				<TimerIndicator
+					currentTime={currentTime}
+					thresholdTimeOne={thresholdTimeOne}
+					thresholdTimeTwo={thresholdTimeTwo}
+				/>
+			);
 	};
 
 	const modalBody = (
@@ -147,6 +230,7 @@ const Countdown = ({ timerType }) => {
 
 	return (
 		<>
+			{console.log(hrs, mins, secs)}
 			<TimerModal isModalOpen={isModalOpen} modalBody={modalBody} />
 			<div className='twinkl-counter-display-container'>
 				<div className='twinkl-counter-display'>
@@ -174,8 +258,9 @@ const Countdown = ({ timerType }) => {
 					Settings
 				</div>
 			) : null}
+			{counterOn ? renderIndicator() : null}
 		</>
 	);
 };
 
-export default Countdown;
+export default Timer;
